@@ -1,0 +1,40 @@
+import Factory from '@ioc:Adonis/Lucid/Factory'
+
+import {{module.name}} from 'App/Models/{{module.name}}'
+
+{{#if relations}}
+{{#each relations}}
+import { random{{relations.name}}Id } from './{{relations.name}}Factory'
+{{/each}}
+{{/if}}
+
+{{#if relations}}
+export const {{module.name}}Factory = Factory
+  .define({{module.name}}, async () => ({
+    {{#each fields}}
+    {{name}}: faker.{{specificType}}(),
+    {{/each}}
+    {{#each relations}}
+    {{relations.field}}: await random{{relations.name}}Id(),
+    {{/each}}
+  }))
+  .build()
+{{/if}}
+{{#unless relations}}
+export const {{module.name}}Factory = Factory
+  .define({{module.name}}, () => ({
+    {{#each fields}}
+    {{name}}: faker.{{specificType}}(),
+    {{/each}}
+  }))
+  .build()
+{{/unless}}
+
+export async function random{{module.name}}Id () {
+  const req = await {{module.name}}.query().select('id')
+  if (!req) {
+    return 0
+  }
+  const ids = req.map(r => r.id)
+  return ids[Math.floor(Math.random() * ids.length)]
+}

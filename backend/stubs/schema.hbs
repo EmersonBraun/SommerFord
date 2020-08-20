@@ -1,0 +1,14 @@
+import { schema{{#if relations}}, rules {{/if}}} from '@ioc:Adonis/Core/Validator'
+
+export const {{module.name}}Schema = schema.create({
+{{#each fields}}
+  {{name}}: schema.{{type}}(),
+{{/each}}
+{{#if relations}}
+{{#each relations}}
+  {{relations.field}}: schema.{{relations.type}}([
+    rules.exists({ table: '{{relations.name}}', column: '{{relations.relationedField}}' }),
+  ]),
+{{/each}}
+{{/if}}
+})
