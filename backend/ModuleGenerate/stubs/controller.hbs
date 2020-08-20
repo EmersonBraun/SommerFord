@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import {{module.name}}Repository from 'App/Repositories/{{module.name}}Repository'
-import { {{module.name}}Schema } from 'App/Validators/{{module.name}}Schema'
+import {{module.name.pascalCase}}Repository from 'App/Repositories/{{module.name.pascalCase}}Repository'
+import { {{module.name.pascalCase}}Schema } from 'App/Validators/{{module.name.pascalCase}}Schema'
 
-export default class {{module.name}}Controller {
+export default class {{module.name.pascalCase}}Controller {
   private readonly repository
   constructor () {
-    this.repository = {{module.name}}Repository
+    this.repository = {{module.name.pascalCase}}Repository
   }
 
   async index ({ response }: HttpContextContract) {
@@ -23,7 +23,7 @@ export default class {{module.name}}Controller {
 
   async store ({ request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: {{module.name}}Schema})
+      await request.validate({schema: {{module.name.pascalCase}}Schema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       // console.log(error.messages.errors)
@@ -58,7 +58,7 @@ export default class {{module.name}}Controller {
 
   async update ({ params, request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: {{module.name}}Schema})
+      await request.validate({schema: {{module.name.pascalCase}}Schema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       return response

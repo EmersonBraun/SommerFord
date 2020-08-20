@@ -1,0 +1,7 @@
+import { {{module.name}}Factory } from 'Database/factories'
+
+export default class {{module.name}}Seeder extends BaseSeeder {
+  public async run () {
+    await {{module.name}}Factory.createMany(10)
+  }
+}
