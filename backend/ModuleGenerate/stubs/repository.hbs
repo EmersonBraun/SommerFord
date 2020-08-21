@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import {{module.name}} from 'App/Models/{{module.name}}'
+import {{module.name.pascalCase}} from 'App/Models/{{module.name.pascalCase}}'
 
-class {{module.name}}Repository {
+class {{module.name.pascalCasePlural}}Repository {
   protected model: any
 
   constructor () {
-    this.model = {{module.name}}
+    this.model = {{module.name.pascalCase}}
   }
 
   async first () {

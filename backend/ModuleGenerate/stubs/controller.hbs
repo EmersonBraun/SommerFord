@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import {{module.name.pascalCase}}Repository from 'App/Repositories/{{module.name.pascalCase}}Repository'
+import {{module.name.pascalCasePlural}}Repository from 'App/Repositories/{{module.name.pascalCasePlural}}Repository'
 import { {{module.name.pascalCase}}Schema } from 'App/Validators/{{module.name.pascalCase}}Schema'
 
-export default class {{module.name.pascalCase}}Controller {
+export default class {{module.name.pascalCasePlural}}Controller {
   private readonly repository
   constructor () {
-    this.repository = {{module.name.pascalCase}}Repository
+    this.repository = {{module.name.pascalCasePlural}}Repository
   }
 
   async index ({ response }: HttpContextContract) {

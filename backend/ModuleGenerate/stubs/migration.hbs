@@ -1,19 +1,16 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class {{module.name}} extends BaseSchema {
-  protected tableName = '{{module.plural}}'
+export default class {{module.name.pascalCasePlural}} extends BaseSchema {
+  protected tableName = '{{module.name.snakeCasePlural}}'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-    {{#each fields}}
-      {{#if isPrimary}}table.increments('{{name}}'){{/if}}}
-      {{#if dateTime}}table.timestamp('{{name}}'){{/if}}}{{#if isRequired}}.notNullable(){{/if}}}{{#unless relations}}.nullable(){{/unless}}
-      table.{{type}}('company'){{#if isRequired}}.notNullable(){{/if}}}{{#unless relations}}.nullable(){{/unless}}
+    {{#each module.fields}}
+      table.{{#if isPrimary}}increments{{/if}}{{#if dateTime}}timestamp{{/if}}{{fieldType}}('{{name}}'){{#if isRequired}}.notNullable(){{/if}}{{#unless isRequired}}.nullable(){{/unless}}
     {{/each}}
-
-    {{#if relations}}
-    {{#each relations}}
-      table.foreign('{{relations.field}}').references('{{relations.relationedField}}').inTable('{{relations.nameLower}}').onDelete('CASCADE')
+    {{#if module.relations}}
+    {{#each module.relations}}
+      table.foreign('{{field}}').references('{{relationedField}}').inTable('{{nameLower}}').onDelete('CASCADE')
     {{/each}}
     {{/if}}
     })

@@ -1,37 +1,37 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 
-import {{module.name}} from 'App/Models/{{module.name}}'
+import {{module.name.pascalCase}} from 'App/Models/{{module.name.pascalCase}}'
 
-{{#if relations}}
-{{#each relations}}
-import { random{{relations.name}}Id } from './{{relations.name}}Factory'
+{{#if module.relations}}
+{{#each rmodule.elations}}
+import { random{{module.relations.name}}Id } from './{{module.relations.name}}Factory'
 {{/each}}
 {{/if}}
 
-{{#if relations}}
-export const {{module.name}}Factory = Factory
-  .define({{module.name}}, async () => ({
-    {{#each fields}}
-    {{name}}: faker.{{specificType}}(),
+{{#if module.relations}}
+export const {{module.name.pascalCase}}Factory = Factory
+  .define({{module.name.pascalCase}}, async () => ({
+    {{#each module.fields}}
+    {{name}}: faker.{{specificType}},
     {{/each}}
-    {{#each relations}}
-    {{relations.field}}: await random{{relations.name}}Id(),
+    {{#each module.relations}}
+    {{field}}: await random{{name}}Id(),
     {{/each}}
   }))
   .build()
 {{/if}}
-{{#unless relations}}
-export const {{module.name}}Factory = Factory
-  .define({{module.name}}, () => ({
-    {{#each fields}}
+{{#unless module.relations}}
+export const {{module.name.pascalCase}}Factory = Factory
+  .define({{module.name.pascalCase}}, () => ({
+    {{#each module.fields}}
     {{name}}: faker.{{specificType}}(),
     {{/each}}
   }))
   .build()
 {{/unless}}
 
-export async function random{{module.name}}Id () {
-  const req = await {{module.name}}.query().select('id')
+export async function random{{module.name.pascalCase}}Id () {
+  const req = await {{module.name.pascalCase}}.query().select('id')
   if (!req) {
     return 0
   }

@@ -1,7 +1,8 @@
-import { {{module.name}}Factory } from 'Database/factories'
+import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
+import { {{module.name.pascalCase}}Factory } from '../factories/{{module.name.pascalCase}}Factory'
 
-export default class {{module.name}}Seeder extends BaseSeeder {
+export default class {{module.name.pascalCase}}Seeder extends BaseSeeder {
   public async run () {
-    await {{module.name}}Factory.createMany(10)
+    await {{module.name.pascalCase}}Factory.createMany(10)
   }
 }

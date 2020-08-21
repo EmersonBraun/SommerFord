@@ -1,13 +1,13 @@
-import { schema{{#if relations}}, rules {{/if}}} from '@ioc:Adonis/Core/Validator'
+import { schema{{#if module.relations}}, rules {{/if}}} from '@ioc:Adonis/Core/Validator'
 
-export const {{module.name}}Schema = schema.create({
-{{#each fields}}
-  {{name}}: schema.{{type}}(),
+export const {{module.name.pascalCase}}Schema = schema.create({
+{{#each module.fields}}
+  {{module.fields.name}}: schema.{{module.fields.type}}(),
 {{/each}}
-{{#if relations}}
-{{#each relations}}
-  {{relations.field}}: schema.{{relations.type}}([
-    rules.exists({ table: '{{relations.name}}', column: '{{relations.relationedField}}' }),
+{{#if module.relations}}
+{{#each module.relations}}
+  {{module.relations.field}}: schema.{{module.relations.type}}([
+    rules.exists({ table: '{{module.relations.name}}', column: '{{module.relations.relationedField}}' }),
   ]),
 {{/each}}
 {{/if}}

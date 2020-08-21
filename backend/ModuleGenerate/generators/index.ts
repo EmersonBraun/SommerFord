@@ -1,34 +1,27 @@
-import fs from 'fs'
-import path from 'path'
-import handlebars from 'handlebars'
+import { getQuestions } from './promptsQuestions'
+import {
+  // createMigration,
+  // createController,
+  // createFactory,
+  // createSeeder,
+  // createSchema,
+  // createRepository,
+  // createModel,
+  createRoute,
+  // createServices,
+} from './creator'
 
-export function getFile (type) {
-  const file = path.join(__dirname, `../../../ModuleGenerate/stubs/${type}.hbs`)
-  return fs.readFileSync(file, {encoding: 'utf-8'})
-}
-
-export async function ensureDirectoryExistence (filePath) {
-  if (fs.existsSync(filePath)) {
-    return true
+export async function moduleGenerate () {
+  const module = await getQuestions()
+  if (module) {
+    // createMigration(module)
+    // createFactory(module)
+    // createSeeder(module)
+    // createSchema(module)
+    // createController(module)
+    // createRepository(module)
+    // createModel(module)
+    createRoute(module)
+    // createServices()
   }
-  fs.mkdir(filePath, { recursive: true }, err => {
-    if (err) {
-      console.log(err)
-    }
-  })
-}
-
-export function mountTemplate (file, module) {
-  const template = handlebars.compile(file)
-  return template({ module })
-}
-
-export function createFile (fileName, template, logger) {
-  fs.writeFile(fileName, template, error => {
-    if (error) {
-      logger.warn(`Error to create ${fileName}`)
-      console.error(error)
-    }
-    logger.success(`Created ${fileName}`)
-  })
 }
