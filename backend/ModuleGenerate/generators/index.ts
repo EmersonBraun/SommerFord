@@ -1,27 +1,25 @@
-import { getQuestions } from './promptsQuestions'
-import {
-  // createMigration,
-  // createController,
-  // createFactory,
-  // createSeeder,
-  // createSchema,
-  // createRepository,
-  // createModel,
-  createRoute,
-  // createServices,
-} from './creator'
+import { getQuestions } from '../questions'
+import { createMigration } from './migration'
+// import { createFactory } from './factory'
+// import { createSeeder } from './seeder'
+// import { createSchema } from './schema'
+// import { createController } from './controller'
+// import { createRepository } from './repository'
+// import { createModel } from './model'
+// import { createRoute } from './router'
+// import { createServices } from './services'
 
 export async function moduleGenerate () {
   const module = await getQuestions()
   if (module) {
-    // createMigration(module)
+    createMigration(module)
     // createFactory(module)
     // createSeeder(module)
     // createSchema(module)
     // createController(module)
     // createRepository(module)
     // createModel(module)
-    createRoute(module)
+    // createRoute(module)
     // createServices()
   }
 }

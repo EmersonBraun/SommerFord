@@ -6,11 +6,12 @@ export default class {{module.name.pascalCasePlural}} extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
     {{#each module.fields}}
-      table.{{#if isPrimary}}increments{{/if}}{{#if dateTime}}timestamp{{/if}}{{fieldType}}('{{name}}'){{#if isRequired}}.notNullable(){{/if}}{{#unless isRequired}}.nullable(){{/unless}}
+      table.{{type}}('{{name}}').{{nullable}}()
     {{/each}}
     {{#if module.relations}}
+
     {{#each module.relations}}
-      table.foreign('{{field}}').references('{{relationedField}}').inTable('{{nameLower}}').onDelete('CASCADE')
+      table.foreign('{{field}}').references('{{relationedField}}').inTable('{{tableName}}').onDelete('CASCADE')
     {{/each}}
     {{/if}}
     })
