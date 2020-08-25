@@ -1,7 +1,12 @@
 import { getFile, getContent, mountTemplate, appendInFile } from '../utils/file'
+import { Module } from 'ModuleGenerate/questions'
 
-export async function createRoute (module) {
-  const path = '../../../start/'
+function getPath () {
+  return '../../../start/'
+}
+
+export async function createRoute (module: Module) {
+  const path = getPath()
   const content = getContent(`${path}routes.ts`)
 
   const file = getFile('route')

@@ -1,8 +1,17 @@
 import { getFile, mountTemplate, createFile } from '../utils/file'
+import { Module } from 'ModuleGenerate/questions'
 
-export async function createSchema (module) {
-  const path = 'app/Validators/'
-  const name = `${module.name.pascal}Schema.ts`
+function getPath () {
+  return 'app/Validators/'
+}
+
+function getName (module: Module) {
+  return `${module.name.pascalCase}Schema.ts`
+}
+
+export async function createSchema (module: Module) {
+  const path = getPath()
+  const name = getName(module)
 
   const file = getFile('schema')
   const template = mountTemplate(file, module)

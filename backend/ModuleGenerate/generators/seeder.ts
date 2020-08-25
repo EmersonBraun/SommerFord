@@ -1,8 +1,17 @@
 import { getFile, mountTemplate, createFile } from '../utils/file'
+import { Module } from 'ModuleGenerate/questions'
 
-export async function createSeeder (module) {
-  const path = 'database/seeders/'
-  const name = `${module.name.pascalCasePlural}Seeder.ts`
+function getPath () {
+  return 'database/seeders/'
+}
+
+function getName (module: Module) {
+  return `${module.name.pascalCasePlural}Seeder.ts`
+}
+
+export async function createSeeder (module: Module) {
+  const path = getPath()
+  const name = getName(module)
 
   const file = getFile('seeder')
   const template = mountTemplate(file, module)

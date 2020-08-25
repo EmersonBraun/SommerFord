@@ -1,8 +1,17 @@
 import { getFile, mountTemplate, createFile } from '../utils/file'
+import { Module } from 'ModuleGenerate/questions'
 
-export async function createRepository (module) {
-  const path = 'app/Repositories/'
-  const name = `${module.name.pascalCasePlural}Repository.ts`
+function getPath () {
+  return 'app/Repositories/'
+}
+
+function getName (module: Module) {
+  return `${module.name.pascalCasePlural}Repository.ts`
+}
+
+export async function createRepository (module: Module) {
+  const path = getPath()
+  const name = getName(module)
 
   const file = getFile('repository')
   const template = mountTemplate(file, module)

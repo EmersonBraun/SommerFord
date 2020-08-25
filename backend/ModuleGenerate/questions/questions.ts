@@ -89,6 +89,13 @@ export const relation = [
     initial: 'id',
     validate: value => !!value || 'Name is required',
   },
+  {
+    type: 'select',
+    name: 'fieldType',
+    message: 'Type of field',
+    choices: [...fieldOptions],
+    initial: 1,
+  },
 ]
 
 export const manyToMany = name => [

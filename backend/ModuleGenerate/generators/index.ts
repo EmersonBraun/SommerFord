@@ -1,10 +1,10 @@
 import { getQuestions } from '../questions'
-import { createMigration } from './migration'
-// import { createFactory } from './factory'
+// import { createMigration } from './migration'
 // import { createSeeder } from './seeder'
-// import { createSchema } from './schema'
 // import { createController } from './controller'
 // import { createRepository } from './repository'
+// import { createFactory } from './factory'
+import { createSchema } from './schema'
 // import { createModel } from './model'
 // import { createRoute } from './router'
 // import { createServices } from './services'
@@ -12,12 +12,12 @@ import { createMigration } from './migration'
 export async function moduleGenerate () {
   const module = await getQuestions()
   if (module) {
-    createMigration(module)
-    // createFactory(module)
+    // createMigration(module)
     // createSeeder(module)
-    // createSchema(module)
     // createController(module)
     // createRepository(module)
+    // createFactory(module)
+    createSchema(module)
     // createModel(module)
     // createRoute(module)
     // createServices()

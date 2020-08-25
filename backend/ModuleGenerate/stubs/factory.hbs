@@ -3,8 +3,8 @@ import Factory from '@ioc:Adonis/Lucid/Factory'
 import {{module.name.pascalCase}} from 'App/Models/{{module.name.pascalCase}}'
 
 {{#if module.relations}}
-{{#each rmodule.elations}}
-import { random{{module.relations.name}}Id } from './{{module.relations.name}}Factory'
+{{#each module.relations}}
+import { random{{modelName}}Id } from './{{modelName}}Factory'
 {{/each}}
 {{/if}}
 

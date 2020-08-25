@@ -1,8 +1,17 @@
 import { getFile, mountTemplate, createFile} from '../utils/file'
+import { Module } from 'ModuleGenerate/questions'
 
-export async function createModel (module) {
-  const path = 'app/Models/'
-  const name = `${module.name.pascalCase}.ts`
+function getPath () {
+  return 'app/Models/'
+}
+
+function getName (module: Module) {
+  return `${module.name.pascalCase}.ts`
+}
+
+export async function createModel (module: Module) {
+  const path = getPath()
+  const name = getName(module)
 
   const file = getFile('model')
   const template = mountTemplate(file, module)

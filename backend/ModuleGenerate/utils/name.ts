@@ -1,10 +1,5 @@
 import pluralize from 'pluralize'
-
-export const toSnakeCase = str => {
-  return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-    .map(x => x.toLowerCase())
-    .join('_')
-}
+import { camelCase, pascalCase, snakeCase } from 'change-case'
 
 export const toKebabCase = str => {
   return str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
@@ -12,14 +7,9 @@ export const toKebabCase = str => {
     .join('-')
 }
 
-export const toCamelCase = str => {
-  return str.toLowerCase()
-    .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
-}
-
-export const toPascalCase = str => {
-  return str.replace(/\w\S*/g, m => m.charAt(0).toUpperCase() + m.substr(1).toLowerCase())
-}
+export const toSnakeCase = str => snakeCase(str)
+export const toCamelCase = str => camelCase(str)
+export const toPascalCase = str => pascalCase(str)
 
 export function nameOptions (name) {
   const plural = pluralize(name)
