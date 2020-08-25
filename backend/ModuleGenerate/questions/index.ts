@@ -1,13 +1,14 @@
 import prompts from 'prompts'
 import Logger from '@poppinss/fancy-logs'
 import { moduleQuestion, field, relation, manyToMany, proceed } from './questions'
-import { nameOptions, toPascalCase } from '../utils/name'
+import { nameOptions, toPascalCase, toCamelCase } from '../utils/name'
 
 export interface Module {
   name: any,
   fields:any,
   relations:any,
   manyToMany: any,
+  hasDatetime: boolean
 }
 
 const moduleToGenerate: Module = {
@@ -15,6 +16,7 @@ const moduleToGenerate: Module = {
   fields: [],
   relations: [],
   manyToMany: [],
+  hasDatetime: false
 }
 
 async function getModuleName () {
@@ -30,6 +32,11 @@ async function getFields () {
     isRelationed: false,
   }
   fieldData = await prompts(field)
+
+  if (fieldData.fieldType === 'datetime') {
+    moduleToGenerate.hasDatetime = true
+  }
+
   if (fieldData.isRelationed) {
     await getRelated (fieldData.name)
   }
@@ -40,6 +47,8 @@ async function getFields () {
 async function getRelated (field) {
   let relationData = await prompts(relation)
   relationData.field = field
+  relationData.camelName = toCamelCase(relationData.modelName)
+  relationData.modelName = toPascalCase(relationData.modelName)
 
   moduleToGenerate.relations.push(relationData)
 }
@@ -48,6 +57,8 @@ async function getManyToMany () {
   let manyData = await prompts(manyToMany(moduleToGenerate.name.snakeCasePlural))
   manyData.className = toPascalCase(manyData.pivotTable)
   manyData.moduleTable = moduleToGenerate.name.snakeCasePlural
+  manyData.camelName = toCamelCase(manyData.modelName)
+  manyData.modelName = toPascalCase(manyData.modelName)
 
   return manyData
 }

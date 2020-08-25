@@ -1,29 +1,28 @@
 import { BaseModel, column, HasOne, hasOne, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 {{#if module.hasDatetime}}import { DateTime } from 'luxon'{{/if}}
 {{#if module.relations}}
-{{#each module.relations}}import {{name}} from './{{name}}'{{/each}}
+{{#each module.relations}}import {{modelName}} from './{{modelName}}'{{/each}}
 {{/if}}
 
 export default class {{module.name.pascalCase}} extends BaseModel {
 {{#each module.fields}}
-  {{#if isPrimary}}@column({ isPrimary: true }){{/if}}
-  {{#if dateTime}}@column.dateTime({ autoCreate: true{{#isUpdatedAt name }}, autoUpdate: true {{/isUpdatedAt}} }){{/if}}
+  @column{{column}}
   public {{name}}: {{type}}
-{{/each}}
 
+{{/each}}
 {{#if module.relations}}
 {{#each module.relations}}
-  @hasOne(() => {{name}})
-  public {{field}}: HasOne<typeof {{name}}>
+  @hasOne(() => {{modelName}})
+  public {{camelName}}: HasOne<typeof {{modelName}}>
 {{/each}}
 {{/if}}
 
 {{#if module.manyToMany}}
 {{#each module.manyToMany}}
-  @manyToMany(() => {{name}}, {
+  @manyToMany(() => {{modelName}}, {
     pivotTable: '{{pivotTable}}',
   })
-  public {{field}}: ManyToMany<typeof {{name}}>
+  public {{camelName}}: ManyToMany<typeof {{modelName}}>
 {{/each}}
 {{/if}}
 }

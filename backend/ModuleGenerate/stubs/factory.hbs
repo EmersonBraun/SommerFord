@@ -8,27 +8,19 @@ import { random{{modelName}}Id } from './{{modelName}}Factory'
 {{/each}}
 {{/if}}
 
-{{#if module.relations}}
+
 export const {{module.name.pascalCase}}Factory = Factory
-  .define({{module.name.pascalCase}}, async () => ({
+  .define({{module.name.pascalCase}}, {{#if module.relations}}async{{/if}} () => ({
     {{#each module.fields}}
     {{name}}: faker.{{specificType}},
     {{/each}}
+  {{#if module.relations}}
     {{#each module.relations}}
-    {{field}}: await random{{name}}Id(),
+    {{field}}: await random{{modelName}}Id(),
     {{/each}}
+  {{/if}}
   }))
   .build()
-{{/if}}
-{{#unless module.relations}}
-export const {{module.name.pascalCase}}Factory = Factory
-  .define({{module.name.pascalCase}}, () => ({
-    {{#each module.fields}}
-    {{name}}: faker.{{specificType}}(),
-    {{/each}}
-  }))
-  .build()
-{{/unless}}
 
 export async function random{{module.name.pascalCase}}Id () {
   const req = await {{module.name.pascalCase}}.query().select('id')

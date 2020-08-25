@@ -3,8 +3,8 @@ import { getQuestions } from '../questions'
 // import { createSeeder } from './seeder'
 // import { createController } from './controller'
 // import { createRepository } from './repository'
-// import { createFactory } from './factory'
-import { createSchema } from './schema'
+import { createFactory } from './factory'
+// import { createSchema } from './schema'
 // import { createModel } from './model'
 // import { createRoute } from './router'
 // import { createServices } from './services'
@@ -16,8 +16,8 @@ export async function moduleGenerate () {
     // createSeeder(module)
     // createController(module)
     // createRepository(module)
-    // createFactory(module)
-    createSchema(module)
+    createFactory(module)
+    // createSchema(module)
     // createModel(module)
     // createRoute(module)
     // createServices()

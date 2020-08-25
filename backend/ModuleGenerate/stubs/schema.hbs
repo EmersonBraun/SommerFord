@@ -2,11 +2,11 @@ import { schema{{#if module.relations}}, rules{{/if}} } from '@ioc:Adonis/Core/V
 
 export const {{module.name.pascalCase}}Schema = schema.create({
 {{#each module.fields}}
-  {{name}}: schema.{{typeField}}(),
+  {{name}}: schema.{{fieldType}}(){{#if isRequired}}.required(){{/if}},
 {{/each}}
 {{#if module.relations}}
 {{#each module.relations}}
-  {{field}}: schema.{{typeField}}([
+  {{field}}: schema.{{fieldType}}([
     rules.exists({ table: '{{tableName}}', column: '{{relationedField}}' }),
   ]),
 {{/each}}
