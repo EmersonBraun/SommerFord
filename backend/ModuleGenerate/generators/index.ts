@@ -3,11 +3,11 @@ import { getQuestions } from '../questions'
 // import { createSeeder } from './seeder'
 // import { createController } from './controller'
 // import { createRepository } from './repository'
-import { createFactory } from './factory'
+// import { createFactory } from './factory'
 // import { createSchema } from './schema'
 // import { createModel } from './model'
 // import { createRoute } from './router'
-// import { createServices } from './services'
+import { createAuxFiles } from './auxFiles'
 
 export async function moduleGenerate () {
   const module = await getQuestions()
@@ -16,10 +16,10 @@ export async function moduleGenerate () {
     // createSeeder(module)
     // createController(module)
     // createRepository(module)
-    createFactory(module)
+    // createFactory(module)
     // createSchema(module)
     // createModel(module)
     // createRoute(module)
-    // createServices()
+    createAuxFiles()
   }
 }

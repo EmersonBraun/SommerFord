@@ -3,10 +3,6 @@ import path from 'path'
 import handlebars from 'handlebars'
 import Logger from '@poppinss/fancy-logs'
 
-handlebars.registerHelper('isTrue', (a, b) => a && b)
-handlebars.registerHelper('isUpdatedAt', (a) => a === 'updatedAt')
-handlebars.registerHelper('isDatetime', (a) => a === 'datetime')
-
 export function getFile (type) {
   const file = path.join(__dirname, `../../../ModuleGenerate/stubs/${type}.hbs`)
   return fs.readFileSync(file, {encoding: 'utf-8'})
@@ -17,7 +13,10 @@ export function getContent (filePath) {
   return fs.readFileSync(file, {encoding: 'utf-8'})
 }
 
-export function ensureDirectoryExistence (filePath) {
+export function ensureDirectoryExistence (filePath, resolve = false) {
+  if (resolve) {
+    filePath = path.join(__dirname, filePath)
+  }
   try {
     const exist = fs.existsSync(filePath)
     if(!exist) {
@@ -51,9 +50,10 @@ export function createFile (name, path, template) {
   }
 }
 
-export function appendInFile (name, path, template) {
+export function appendInFile (name, filePath, template) {
+  const file = path.join(__dirname, filePath)
   try {
-    fs.appendFileSync(path, template)
+    fs.appendFileSync(file, template)
     Logger.success(`Added ${name}`)
   } catch (error) {
     Logger.warn(`Error to create file ${name}`, error)
@@ -62,9 +62,11 @@ export function appendInFile (name, path, template) {
 
 export function copyFile (name, pathOrigin, pathDestiny) {
   ensureDirectoryExistence(pathDestiny)
+  const origin = path.join(__dirname, `${pathOrigin}${name}.hbs`)
+  const destiny = path.join(__dirname, `${pathDestiny}${name}.ts`)
 
   try {
-    fs.copyFileSync(pathOrigin, pathDestiny)
+    fs.copyFileSync(origin, destiny)
     Logger.success(`Create ${name}`)
   } catch (error) {
     Logger.warn('Error to create file', error)

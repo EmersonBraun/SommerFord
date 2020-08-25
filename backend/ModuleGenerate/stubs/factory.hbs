@@ -8,7 +8,6 @@ import { random{{modelName}}Id } from './{{modelName}}Factory'
 {{/each}}
 {{/if}}
 
-
 export const {{module.name.pascalCase}}Factory = Factory
   .define({{module.name.pascalCase}}, {{#if module.relations}}async{{/if}} () => ({
     {{#each module.fields}}
