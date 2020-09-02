@@ -26,7 +26,7 @@
                 <q-item clickable class="GL__menu-link" to="/projects">
                   <q-item-section>Projects</q-item-section>
                 </q-item>
-                <q-item clickable class="GL__menu-link" to="/projects Types">
+                <q-item clickable class="GL__menu-link" to="/projectTypes">
                   <q-item-section>Projects Types</q-item-section>
                 </q-item>
                 <q-item clickable class="GL__menu-link" to="/modules">

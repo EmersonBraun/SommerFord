@@ -3,7 +3,7 @@
     <q-card flat>
       <q-card-section class="row">
         <div class="q-pa-md col-12">
-          <q-input hide-bottom-space clearable outlined label="Andamento" placeholder="andamento" disable/>
+          <q-input clearable v-model="register.project_type" outlined label="project_type" ref="project_type" :rules="[ $rules.required('project_type is required') ]"/>
         </div>
       </q-card-section>
     </q-card>
@@ -12,19 +12,19 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-
-declare type ProjectType = {
-  id: number
-  project_type: string
-}
+import { ProjectType, create, update } from './index'
 
 export default defineComponent({
-  name: 'Login',
-  setup (_, { refs, root }) {
-    const vars = reactive({})
+  name: 'ProjectTypeForm',
+  setup (/*_, { refs, root }*/) {
+    const vars = reactive({
+      register: {
+        project_type: ''
+      } as ProjectType
+    })
     const functions = {
-      create () {},
-      update () {}
+      create,
+      update
     }
 
     return { 

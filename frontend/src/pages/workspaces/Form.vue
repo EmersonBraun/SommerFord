@@ -3,7 +3,10 @@
     <q-card flat>
       <q-card-section class="row">
         <div class="q-pa-md col-12">
-          <q-input hide-bottom-space clearable outlined label="Andamento" placeholder="andamento" disable/>
+          <q-input clearable v-model="register.workspace" outlined label="workspace" ref="workspace" :rules="[ $rules.required('workspace is required') ]"/>
+        </div>
+        <div class="q-pa-md col-12">
+          <q-input clearable v-model="register.small_title" outlined label="small_title" ref="small_title" :rules="[ $rules.required('small_title is required') ]"/>
         </div>
       </q-card-section>
     </q-card>
@@ -12,20 +15,20 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-
-declare type Workspace = {
-  id: number
-  workspace: string
-  small_title: boolean
-}
+import { Workspace, create, update } from './index'
 
 export default defineComponent({
   name: 'Login',
-  setup (_, { refs, root }) {
-    const vars = reactive({})
+  setup (/*_, { refs, root }*/) {
+    const vars = reactive({
+      register: {
+        workspace: '',
+        small_title: ''
+      } as Workspace
+    })
     const functions = {
-      create () {},
-      update () {}
+      create,
+      update
     }
 
     return { 

@@ -3,7 +3,7 @@
     <q-card flat>
       <q-card-section class="row">
         <div class="q-pa-md col-12">
-          <q-input hide-bottom-space clearable outlined label="Andamento" placeholder="andamento" disable/>
+          <q-input clearable v-model="register.payment_status" outlined label="payment_status" ref="payment_status" :rules="[ $rules.required('payment_status is required') ]"/>
         </div>
       </q-card-section>
     </q-card>
@@ -12,19 +12,19 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-
-declare type PaymentStatus = {
-  id: number
-  payment_status: string
-}
+import { PaymentStatus, create, update } from './index'
 
 export default defineComponent({
-  name: 'Login',
-  setup (_, { refs, root }) {
-    const vars = reactive({})
+  name: 'PaymentStatusForm',
+  setup (/*_, { refs, root }*/) {
+    const vars = reactive({
+      register: {
+        payment_status: ''
+      } as PaymentStatus
+    })
     const functions = {
-      create () {},
-      update () {}
+      create,
+      update
     }
 
     return { 

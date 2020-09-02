@@ -12,23 +12,19 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-
-declare type Group = {
-  id?: number
-  group: string
-}
+import { Group, create, update } from './index'
 
 export default defineComponent({
-  name: 'Login',
-  setup (_, { refs, root }) {
+  name: 'GroupForm',
+  setup (/*_, { refs, root }*/) {
     const vars = reactive({
       register: {
         group: ''
       } as Group
     })
     const functions = {
-      create () {},
-      update () {}
+      create,
+      update
     }
 
     return { 

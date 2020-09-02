@@ -18,27 +18,21 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-
-declare type Client = {
-  id?: number
-  name: string
-  email: string
-  role: string
-}
+import { Client, create, update } from './index'
 
 export default defineComponent({
-  name: 'Login',
-  setup (_, { refs, root }) {
+  name: 'ClientForm',
+  setup (/*_, { refs, root }*/) {
     const vars = reactive({
       register: {
         name: '',
         email: '',
         role: '',
-      }
+      } as Client
     })
     const functions = {
-      create () {},
-      update () {}
+      create,
+      update
     }
 
     return { 
