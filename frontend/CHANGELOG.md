@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/EmersonBraun/SommerFord/compare/v0.0.2...v0.0.5) (2020-09-02)
+
+
+### Features
+
+* **global:** implement form pages ([b474b4c](https://github.com/EmersonBraun/SommerFord/commit/b474b4c9bb2cadef7c3df8cc5111c7c891e95bd5))
+
 ### [0.0.4](https://github.com/EmersonBraun/SommerFord/compare/v0.0.3...v0.0.4) (2020-09-02)
 
 ### 0.0.3 (2020-09-02)
