@@ -8,7 +8,7 @@ import { defineComponent } from '@vue/composition-api';
 
 declare module '@vue/composition-api' {
   interface SetupContext {
-    readonly refs: { [key: string]: Vue | Element | Vue[] | Element[] | any };
+    readonly refs: { [key: string]: Vue | Element | Vue[] | Element[] };
   }
 }
 

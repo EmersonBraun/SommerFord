@@ -13,9 +13,14 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
 
-declare type ProjectType = {
+declare type Project = {
   id: number
-  project_type: string
+  name: string
+  visual_identity: boolean
+  competitor: string
+  client_id: number
+  project_type: number
+  dev_type_id: number
 }
 
 export default defineComponent({

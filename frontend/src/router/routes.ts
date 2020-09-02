@@ -7,7 +7,7 @@ import modules from './modules'
 import paymentStatus from './paymentStatus'
 import payments from './payments'
 import phones from './phones'
-import project from './project'
+import project from './projects'
 import projectTypes from './projectTypes'
 import users from './users'
 import worspaces from './worspaces'
@@ -24,13 +24,13 @@ const routes: RouteConfig[] = [
   ...projectTypes,
   ...users,
   ...worspaces,
-  // {
-  //   path: '/',
-  //   component: () => import('layouts/MainLayout.vue'),
-  //   children: [
-  //     { path: '', component: () => import('pages/Index.vue') }
-  //   ]
-  // },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Index.vue') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it
