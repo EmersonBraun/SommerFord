@@ -33,28 +33,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from '@vue/composition-api'
+import { defineComponent, reactive, toRefs, computed } from '@vue/composition-api'
 import { title, columns, edit, remove, getData } from './index'
 
 export default defineComponent({
   name: 'ClientsIndex',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       title,
-      data: [],
+      data: computed(() => root.$store.state.client.data),
       columns,
       filter: ''
     })
     const functions = {
       async loadData () {
-        vars.data = await getData()
+        await root.$store.dispatch('client/getData')
       },
-      async editRow (id: number) {
-        await edit(id)
-        this.loadData()
+      editRow (id: number) {
+        root.$router.push(`clients/${id}`)
       },
       async removeRow (id: number) {
-        await remove(id)
+        await root.$store.dispatch('client/remove', id)
         this.loadData()
       },
     }

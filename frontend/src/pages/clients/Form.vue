@@ -6,10 +6,13 @@
           <q-input clearable v-model="register.name" outlined label="Name" ref="name" :rules="[ $rules.required('Name is required') ]"/>
         </div>
         <div class="q-pa-md col-12">
-          <q-input clearable v-model="register.email" outlined label="Nome" ref="email" :rules="[ $rules.required('Name is required') ]"/>
+          <q-input clearable v-model="register.email" outlined label="Email" ref="email" :rules="[ $rules.required('email is required') ]"/>
         </div>
         <div class="q-pa-md col-12">
-          <q-input clearable v-model="register.role" outlined label="Nome" ref="role" :rules="[ $rules.required('Name is required') ]"/>
+          <q-input clearable v-model="register.role" outlined label="Role" ref="role" :rules="[ $rules.required('Role is required') ]"/>
+        </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? edit : create" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
         </div>
       </q-card-section>
     </q-card>
@@ -18,11 +21,12 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Client, create, update } from './index'
+import { Client, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'ClientForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: {
         name: '',
@@ -31,8 +35,18 @@ export default defineComponent({
       } as Client
     })
     const functions = {
-      create,
-      update
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('clients/create', vars.register)
+          root.$router.push('clients')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('clients/update', vars.register)
+          root.$router.push('clients')
+        }
+      }
     }
 
     return { 

@@ -16,6 +16,8 @@ export const columns = [
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 
+export const fields = ['name', 'email', 'role']
+
 export async function getData () {
   const URL = `${module}`
   return await get(URL, true)
