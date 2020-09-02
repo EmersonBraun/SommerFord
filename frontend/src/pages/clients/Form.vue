@@ -49,6 +49,12 @@ export default defineComponent({
       }
     }
 
+    async function main () {
+      const id = root.$route.params?.id
+      if (id) {
+        vars.register = await root.$store.dispatch('clients/getOne', id)
+      }
+    }
     return { 
       ...toRefs(vars),
       ...functions
