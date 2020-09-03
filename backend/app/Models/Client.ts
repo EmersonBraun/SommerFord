@@ -16,14 +16,13 @@ export default class Client extends BaseModel {
   @column()
   public role: string
 
-
   @manyToMany(() => Phone, {
     pivotTable: 'clients_has_phones',
   })
-  public phone: ManyToMany<typeof Phone>
+  public phones: ManyToMany<typeof Phone>
 
   @manyToMany(() => Payment, {
     pivotTable: 'clients_has_payments',
   })
-  public payment: ManyToMany<typeof Payment>
+  public payments: ManyToMany<typeof Payment>
 }

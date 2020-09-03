@@ -9,7 +9,6 @@
           :columns="columns"
           row-key="name"
           :filter="filter"
-          hide-header
           class="col-12"
         >
           <template v-slot:top-right>
@@ -22,11 +21,11 @@
           <template v-slot:body-cell-actions="props">
             <q-td :props="props">
               <q-btn dense round flat color="grey" @click="editRow(props.row.id)" icon="edit"></q-btn>
-              <q-btn dense round flat color="grey" @click="deleteRow(props.row.id)" icon="delete"></q-btn>
+              <q-btn dense round flat color="grey" @click="removeRow(props.row.id)" icon="delete"></q-btn>
             </q-td>
           </template>
         </q-table>
-        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/${module}/create`"/>
+        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/clients/create`"/>
       </q-card-section>
     </q-card>
   </q-page>
@@ -34,32 +33,35 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from '@vue/composition-api'
-import { title, columns, edit, remove, getData } from './index'
+import { title, columns } from './index'
+import { confirmMsg } from 'src/libs/dialog'
 
 export default defineComponent({
   name: 'ClientsIndex',
-  setup (_, { refs, root }) {
+  setup (_, { root }) {
     const vars = reactive({
-      title,
       data: computed(() => root.$store.state.client.data),
+      title,
       columns,
       filter: ''
     })
     const functions = {
       async loadData () {
-        await root.$store.dispatch('client/getData')
+        await root.$store.dispatch('client/getAll')
       },
       editRow (id: number) {
-        root.$router.push(`clients/${id}`)
+        void root.$router.push(`clients/edit/${id}`)
       },
-      async removeRow (id: number) {
-        await root.$store.dispatch('client/remove', id)
-        this.loadData()
+      removeRow (id: number) {
+        root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {
+          void root.$store.dispatch('client/remove', id)
+          void this.loadData()
+        })
       },
     }
-    functions.loadData()
+    void functions.loadData()
 
-    return { 
+    return {
       ...toRefs(vars),
       ...functions
     }

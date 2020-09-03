@@ -5,11 +5,11 @@ export default class ClientsHasPayments extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.integer('clients_id').unsigned().nullable()
-      table.integer('payments_id').unsigned().nullable()
+      table.integer('client_id').unsigned().nullable()
+      table.integer('payment_id').unsigned().nullable()
 
-      table.foreign('clients_id').references('id').inTable('clients').onDelete('CASCADE')
-      table.foreign('payments_id').references('id').inTable('payments').onDelete('CASCADE')
+      table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')
+      table.foreign('payment_id').references('id').inTable('payments').onDelete('CASCADE')
     })
   }
 

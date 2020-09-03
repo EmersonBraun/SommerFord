@@ -3,8 +3,11 @@ import { StateInterface } from '../index';
 import { ClientStateInterface } from './state';
 
 const actions: ActionTree<ClientStateInterface, StateInterface> = {
-  getData (context, state: ClientStateInterface) {
-    context.commit('getData', state)
+  getAll (context, state: ClientStateInterface) {
+    context.commit('getAll', state)
+  }, 
+  getOne (context, state: ClientStateInterface) {
+    context.commit('getOne', state)
   }, 
   create (context, state: ClientStateInterface) {
     context.commit('create', state)

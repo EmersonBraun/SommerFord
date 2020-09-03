@@ -3,7 +3,6 @@ import ProjectType from 'App/Models/ProjectType'
 
 export const ProjectTypeFactory = Factory
   .define(ProjectType, ({faker}) => ({
-    id: faker.lorem.words(),
     project_type: faker.lorem.words(),
   }))
   .build()

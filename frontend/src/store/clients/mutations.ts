@@ -11,7 +11,7 @@ const mutation: MutationTree<ClientStateInterface> = {
   }, 
   async getOne (state: ClientStateInterface, id: number) {
     const response = await get(`${module}/${id}`)
-    state.data = response
+    state.register = response
   }, 
   async create (state: ClientStateInterface, payload: Client) {
     await post(`${module}`, payload)

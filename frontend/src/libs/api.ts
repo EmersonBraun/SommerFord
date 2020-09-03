@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 import PrettyLog from '@emersonbraun/pretty-log/src'
 import ntf from './notify.js'
 
-const baseURL = 'localhost:3333/api'
+const baseURL = 'http://127.0.0.1:3333/api'
 
 declare type Headers = {
   Accept: string,
@@ -27,7 +27,7 @@ function setHeaders (file = false) {
   return headers
 }
 
-function showNotify (response: { headers: { message: any }; status: number }) {
+function showNotify (response: { headers: { message: string }; status: number }) {
   if (typeof response.headers.message !== 'undefined') {
     if (response.status < 200 || response.status > 299) {
       ntf.patternNotify(response.headers.message)
@@ -36,13 +36,13 @@ function showNotify (response: { headers: { message: any }; status: number }) {
     }
   }
 }
-function setResponse (response: AxiosResponse<any>, silent: boolean = false) {
+function setResponse (response: AxiosResponse<unknown>, silent = false) {
   if (response.status === 403) window.location.replace('/')
   if (!silent) showNotify(response)
   return response.data
 }
 
-export async function get (URL: string, silent: boolean = true, debug: boolean = false) {
+export async function get (URL: string, silent = true, debug = false) {
   Loading.show()
   const headers = setHeaders()
   const completeURL = `${baseURL}/${URL}`
@@ -57,7 +57,7 @@ export async function get (URL: string, silent: boolean = true, debug: boolean =
   }
 }
 
-export async function post (URL: string, data: object ,silent: boolean = false, debug: boolean = false) {
+export async function post (URL: string, data: unknown ,silent = false, debug = false) {
   Loading.show()
   const headers = setHeaders()
   const completeURL = `${baseURL}/${URL}`
@@ -72,7 +72,7 @@ export async function post (URL: string, data: object ,silent: boolean = false, 
   }
 }
 
-export async function put (URL: string, data: object ,silent: boolean = false, debug: boolean = false) {
+export async function put (URL: string, data: unknown ,silent = false, debug = false) {
   Loading.show()
   const headers = setHeaders()
   const completeURL = `${baseURL}/${URL}`
@@ -87,7 +87,7 @@ export async function put (URL: string, data: object ,silent: boolean = false, d
   }
 }
 
-export async function deleteData (URL: string, silent: boolean = false, debug: boolean = false) {
+export async function deleteData (URL: string, silent = false, debug = false) {
   Loading.show()
   const headers = setHeaders()
   const completeURL = `${baseURL}/${URL}`

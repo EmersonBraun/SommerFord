@@ -44,7 +44,10 @@ const corsConfig: CorsConfig = {
   |                     one of the above values.
   |
   */
-  origin: true,
+  origin: o => {
+    console.log('Received a call with origin:', o)
+    return true
+  },
 
   /*
   |--------------------------------------------------------------------------
