@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/EmersonBraun/SommerFord/compare/v0.0.4...v0.0.7) (2020-09-03)
+
+
+### Bug Fixes
+
+* names in files ([a2e93ca](https://github.com/EmersonBraun/SommerFord/commit/a2e93ca3e46af54a3b1a64e81553696b1dce02d8))
+* vuex client ([0e9fa2c](https://github.com/EmersonBraun/SommerFord/commit/0e9fa2c1d08590aa3ebda301d4bdd2d610c48878))
+
 ### [0.0.6](https://github.com/EmersonBraun/SommerFord/compare/v0.0.5...v0.0.6) (2020-09-02)
 
 ### [0.0.5](https://github.com/EmersonBraun/SommerFord/compare/v0.0.2...v0.0.5) (2020-09-02)
