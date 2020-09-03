@@ -1,6 +1,8 @@
-import { BaseModel, column, HasOne, hasOne,manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 
-import Client from './Client'import Project from './Project'import DevType from './DevType'
+import Client from './Client'
+import ProjectType from './ProjectType'
+import DevType from './DevType'
 import Modules from './Modules'
 
 export default class Project extends BaseModel {
@@ -11,26 +13,25 @@ export default class Project extends BaseModel {
   public name: string
 
   @column()
-  public client_id: string
+  public client_id: number
 
   @column()
-  public project_type: string
+  public project_type: number
 
   @column()
-  public dev_type_id: string
+  public dev_type_id: number
 
   @column()
-  public id: string
+  public visual_identity: boolean
 
   @column()
   public competitor: string
 
-
   @hasOne(() => Client)
   public client: HasOne<typeof Client>
 
-  @hasOne(() => Project)
-  public project: HasOne<typeof Project>
+  @hasOne(() => ProjectType)
+  public projectType: HasOne<typeof ProjectType>
 
   @hasOne(() => DevType)
   public devType: HasOne<typeof DevType>

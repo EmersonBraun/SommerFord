@@ -1,6 +1,7 @@
-import { BaseModel, columnmanyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 
-import Service from './Service'import Project from './Project'
+import Service from './Service'
+import Project from './Project'
 
 export default class Group extends BaseModel {
   @column()

@@ -7,7 +7,7 @@ export default class Payments extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').nullable()
       table.float('value').notNullable()
-      table.datetime('date').notNullable()
+      table.dateTime('date').notNullable()
       table.integer('payment_status_id').notNullable()
 
       table.foreign('payment_status_id').references('id').inTable('payment_statuses').onDelete('CASCADE')

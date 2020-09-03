@@ -3,7 +3,6 @@ import Group from 'App/Models/Group'
 
 export const GroupFactory = Factory
   .define(Group, ({faker}) => ({
-    id: faker.lorem.words(),
     group: faker.lorem.words(),
   }))
   .build()
@@ -14,5 +13,5 @@ export async function randomGroupId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return ids[Math.floor(Math.random() * ids.length)]
+  return Number(ids[Math.floor(Math.random() * ids.length)])
 }

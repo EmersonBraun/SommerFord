@@ -10,7 +10,7 @@ export default class Projects extends BaseSchema {
       table.integer('client_id').notNullable()
       table.integer('project_type').notNullable()
       table.integer('dev_type_id').notNullable()
-      table.boolean('id').nullable()
+      table.boolean('visual_identity').nullable()
       table.string('competitor').nullable()
 
       table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')

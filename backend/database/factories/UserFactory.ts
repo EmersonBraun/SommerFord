@@ -3,10 +3,9 @@ import User from 'App/Models/User'
 
 export const UserFactory = Factory
   .define(User, ({faker}) => ({
-    id: faker.lorem.words(),
     name: faker.lorem.words(),
     password: faker.lorem.words(),
-    is_admin: faker.lorem.words(),
+    is_admin: faker.random.boolean(),
   }))
   .build()
 
@@ -16,5 +15,5 @@ export async function randomUserId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return ids[Math.floor(Math.random() * ids.length)]
+  return Number(ids[Math.floor(Math.random() * ids.length)])
 }

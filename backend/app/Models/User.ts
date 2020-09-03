@@ -1,6 +1,5 @@
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
-
 export default class User extends BaseModel {
   @column()
   public id: string
@@ -12,6 +11,6 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
-  public is_admin: string
+  public is_admin: boolean
 
 }

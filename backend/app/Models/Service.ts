@@ -1,4 +1,4 @@
-import { BaseModel, columnmanyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 
 import Group from './Group'
 
@@ -11,7 +11,6 @@ export default class Service extends BaseModel {
 
   @column()
   public hour_needed: string
-
 
   @manyToMany(() => Group, {
     pivotTable: 'groups_has_services',

@@ -1,4 +1,4 @@
-import { BaseModel, columnmanyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 
 import Client from './Client'
 
@@ -11,7 +11,6 @@ export default class Phone extends BaseModel {
 
   @column()
   public whatsapp: string
-
 
   @manyToMany(() => Client, {
     pivotTable: 'clients_has_phones',

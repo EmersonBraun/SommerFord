@@ -3,7 +3,6 @@ import Client from 'App/Models/Client'
 
 export const ClientFactory = Factory
   .define(Client, ({faker}) => ({
-    id: faker.lorem.words(),
     name: faker.lorem.words(),
     email: faker.lorem.words(),
     role: faker.lorem.words(),
@@ -16,5 +15,5 @@ export async function randomClientId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return ids[Math.floor(Math.random() * ids.length)]
+  return Number(ids[Math.floor(Math.random() * ids.length)])
 }

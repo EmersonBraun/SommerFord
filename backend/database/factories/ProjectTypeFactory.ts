@@ -14,5 +14,5 @@ export async function randomProjectTypeId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return ids[Math.floor(Math.random() * ids.length)]
+  return Number(ids[Math.floor(Math.random() * ids.length)])
 }

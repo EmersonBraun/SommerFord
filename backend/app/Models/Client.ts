@@ -1,6 +1,7 @@
-import { BaseModel, columnmanyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 
-import Phone from './Phone'import Payment from './Payment'
+import Phone from './Phone'
+import Payment from './Payment'
 
 export default class Client extends BaseModel {
   @column()

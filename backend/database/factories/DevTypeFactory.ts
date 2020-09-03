@@ -3,7 +3,6 @@ import DevType from 'App/Models/DevType'
 
 export const DevTypeFactory = Factory
   .define(DevType, ({faker}) => ({
-    id: faker.lorem.words(),
     dev_type: faker.lorem.words(),
   }))
   .build()
@@ -14,5 +13,5 @@ export async function randomDevTypeId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return ids[Math.floor(Math.random() * ids.length)]
+  return Number(ids[Math.floor(Math.random() * ids.length)])
 }
