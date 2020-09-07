@@ -1,7 +1,7 @@
 import { Loading, LocalStorage } from 'quasar'
 import axios, { AxiosResponse } from 'axios'
 import PrettyLog from '@emersonbraun/pretty-log/src'
-import ntf from './notify.js'
+import { errorNotify, successNotify } from './notify'
 
 const baseURL = 'http://127.0.0.1:3333/api'
 
@@ -28,11 +28,11 @@ function setHeaders (file = false) {
 }
 
 function showNotify (response: { headers: { message: string }; status: number }) {
-  if (typeof response.headers.message !== 'undefined') {
+  if (response?.headers?.message) {
     if (response.status < 200 || response.status > 299) {
-      ntf.patternNotify(response.headers.message)
+      errorNotify(response.headers.message)
     } else {
-      ntf.error(response.headers.message)
+      successNotify(response.headers.message)
     }
   }
 }
@@ -50,6 +50,7 @@ export async function get (URL: string, silent = true, debug = false) {
     const response = await axios.get(completeURL, { headers })
     if (debug) PrettyLog.success(`Response: ${completeURL}`, response)
     Loading.hide()
+    console.log(response)
     return setResponse(response, silent)
   } catch (e) {
     PrettyLog.error(`Error to get ${completeURL}`, e)
@@ -101,3 +102,20 @@ export async function deleteData (URL: string, silent = false, debug = false) {
     Loading.hide()
   }
 }
+
+// axios.interceptors.request.use(config => {
+//   const token = getToken()
+//   if (token) config.headers['Authorization'] = token
+//   return config
+// })
+
+// axios.interceptors.response.use(function (response) {
+//   // if (debug) PrettyLog.success(`Response:`, response)
+//   Loading.hide()
+//   return response.data
+// }, function (error) {
+//   if (error.status === 403) window.location.replace('/')
+//   // PrettyLog.error(`Error:`, error)
+//   Loading.hide()
+//   return error.response
+// })

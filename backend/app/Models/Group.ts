@@ -10,7 +10,6 @@ export default class Group extends BaseModel {
   @column()
   public group: string
 
-
   @manyToMany(() => Service, {
     pivotTable: 'groups_has_services',
   })

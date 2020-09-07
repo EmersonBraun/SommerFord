@@ -6,5 +6,4 @@ export default class PaymentStatus extends BaseModel {
 
   @column()
   public payment_status: string
-
 }

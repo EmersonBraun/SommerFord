@@ -1,22 +1,28 @@
 import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { ClientStateInterface } from './state';
+import { get, post, put, deleteData } from 'src/libs/api'
+const module = 'clients'
 
 const actions: ActionTree<ClientStateInterface, StateInterface> = {
-  getAll (context, state: ClientStateInterface) {
-    context.commit('getAll', state)
-  }, 
-  getOne (context, state: ClientStateInterface) {
-    context.commit('getOne', state)
-  }, 
-  create (context, state: ClientStateInterface) {
-    context.commit('create', state)
+  async getAll (context) {
+    const response = await get(`${module}`)
+    context.commit('getAll', response)
   },
-  update (context, state: ClientStateInterface) {
-    context.commit('update', state)
+  async create (context, register: object) {
+    await post(`${module}`, register)
+    const response = await get(`${module}`)
+    context.commit('getAll', response)
   },
-  remove (context, state: ClientStateInterface) {
-    context.commit('remove', state)
+  async update (context, register: object) {
+    await put(`${module}/${register.id}`, register)
+    const response = await get(`${module}`)
+    context.commit('getAll', response)
+  },
+  async remove (context, id: number) {
+    await deleteData(`${module}/${id}`)
+    const response = await get(`${module}`)
+    context.commit('getAll', response)
   }
 };
 

@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "build": "node ace build",
+    "migrate": "node ace migration:run",
+    "seed": "node ace db:seed --file=_DBSeeder",
     "start": "node ace serve --watch",
-    "lint": "eslint . --ext=.ts"
+    "lint": "eslint . --ext=.ts --fix"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^2.1.5",

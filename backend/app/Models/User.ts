@@ -12,5 +12,4 @@ export default class User extends BaseModel {
 
   @column()
   public is_admin: boolean
-
 }

@@ -107,6 +107,8 @@ const corsConfig: CorsConfig = {
     'expires',
     'last-modified',
     'pragma',
+    'returntype',
+    'message',
   ],
 
   /*

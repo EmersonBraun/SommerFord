@@ -39,7 +39,7 @@ export default defineComponent({
       async create() {
         if (validate(refs, fields)) {
           await root.$store.dispatch('client/create', vars.register)
-          root.$router.push('clients')
+          root.$router.push('/clients')
         }
       },
       async update() {

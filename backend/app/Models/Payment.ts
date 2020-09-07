@@ -1,4 +1,4 @@
-import { BaseModel, column, HasOne, hasOne, } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 // import { DateTime } from 'luxon'
 import PaymentStatus from './PaymentStatus'
 
