@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/EmersonBraun/SommerFord/compare/v1.0.0...v0.1.0) (2020-09-08)
+
+
+### Features
+
+* replicate basic model ([6206b64](https://github.com/EmersonBraun/SommerFord/commit/6206b64d0fbe752cea48c02305ff5f9994d74613))
+
 ### [0.0.7](https://github.com/EmersonBraun/SommerFord/compare/v0.0.4...v0.0.7) (2020-09-03)
 
 

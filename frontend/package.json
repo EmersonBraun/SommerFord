@@ -1,13 +1,15 @@
 {
   "name": "frontend",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "An application for the requirements gathering process",
   "productName": "SommerFord",
   "author": "EmersonBraun <emersonfbraun@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "release": "standard-version",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
