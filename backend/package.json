@@ -1,13 +1,17 @@
 {
   "name": "backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "node ace build",
     "migrate": "node ace migration:run",
     "seed": "node ace db:seed --file=_DBSeeder",
     "start": "node ace serve --watch",
-    "lint": "eslint . --ext=.ts --fix"
+    "lint": "eslint . --ext=.ts --fix",
+    "release:major": "standard-version --release-as major",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^2.1.5",
@@ -15,6 +19,7 @@
     "eslint": "^7.7.0",
     "eslint-plugin-adonis": "^1.0.14",
     "pino-pretty": "^4.1.0",
+    "standard-version": "^9.0.0",
     "typescript": "^4.0.2",
     "youch": "^2.0.10",
     "youch-terminal": "^1.0.0"
