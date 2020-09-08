@@ -1,42 +1,28 @@
-import { get, post, put, deleteData } from 'src/libs/api'
 export const module = 'modules'
 export const title = 'Modules'
 
 export type Module = {
   id?: number
   name: string
-  group_id: number
+  small_title: string
+  model_name: string
+  route_name: string 
+  project_id: number
 }
 
 export const columns = [
   { name: 'name', label: 'Name', field: 'name', sortable: true },
-  { name: 'group', label: 'group', field: 'group' },
+  { name: 'project_id', label: 'project_id', field: 'project_id', sortable: true },
+  { name: 'model_name', label: 'model_name', field: 'model_name', sortable: true },
+  { name: 'route_name', label: 'route_name', field: 'route_name', sortable: true },
+  // { name: 'project_id', label: 'project_id', field: 'project_id' },
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 
-export async function getData () {
-  const URL = `${module}`
-  return await get(URL, true)
-}
-
-export async function create (register: Module) {
-  const URL = `${module}`
-  return await post(URL, register)
-}
-
-export function edit (id: number) {
-  window.location.replace(`/${module}/edit/${id}`)
-  return true
-}
-
-export async function update (id: number, register: Module) {
-  const URL = `${module}/${id}`
-  return await put(URL, register)
-}
-
-export async function remove (id: number) {
-  const URL = `${module}/${id}`
-  return await deleteData(URL)
-}
-
-
+export const fields = [
+  'name',
+  'small_title',
+  'model_name',
+  'route_name',
+  'project_id',
+]

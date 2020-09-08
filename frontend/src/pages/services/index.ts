@@ -1,5 +1,4 @@
-import { get, post, put, deleteData } from 'src/libs/api'
-export const module = 'Services'
+export const module = 'services'
 export const title = 'Services'
 
 export type Service = {
@@ -14,29 +13,8 @@ export const columns = [
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 
-export async function getData () {
-  const URL = `${module}`
-  return await get(URL, true)
-}
-
-export async function create (register: Service) {
-  const URL = `${module}`
-  return await post(URL, register)
-}
-
-export function edit (id: number) {
-  window.location.replace(`/${module}/edit/${id}`)
-  return true
-}
-
-export async function update (id: number, register: Service) {
-  const URL = `${module}/${id}`
-  return await post(URL, register)
-}
-
-export async function remove (id: number) {
-  const URL = `${module}/${id}`
-  return await deleteData(URL)
-}
-
+export const fields = [
+  'service',
+  'hour_needed',
+]
 

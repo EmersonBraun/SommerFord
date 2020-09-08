@@ -15,11 +15,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Service, create, update } from './index'
+import { get } from 'src/libs/api'
+import { Service, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'ServiceForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: {
         service: '',
@@ -27,9 +29,27 @@ export default defineComponent({
       } as Service
     })
     const functions = {
-      create,
-      update
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('service/create', vars.register)
+          root.$router.push('/services')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('service/update', vars.register)
+          root.$router.push('/services')
+        }
+      },
+      async main () {
+        const id = root.$route.params?.id
+        if (id) {
+          const response = await get(`services/${id}`)
+          vars.register = response
+        }
+      }
     }
+    void functions.main()
 
     return { 
       ...toRefs(vars),

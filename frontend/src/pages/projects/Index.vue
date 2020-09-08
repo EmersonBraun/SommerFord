@@ -9,7 +9,6 @@
           :columns="columns"
           row-key="name"
           :filter="filter"
-          hide-header
           class="col-12"
         >
           <template v-slot:top-right>
@@ -22,7 +21,7 @@
           <template v-slot:body-cell-actions="props">
             <q-td :props="props">
               <q-btn dense round flat color="grey" @click="editRow(props.row.id)" icon="edit"></q-btn>
-              <q-btn dense round flat color="grey" @click="deleteRow(props.row.id)" icon="delete"></q-btn>
+              <q-btn dense round flat color="grey" @click="removeRow(props.row.id)" icon="delete"></q-btn>
             </q-td>
           </template>
         </q-table>
@@ -34,32 +33,35 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs, computed } from '@vue/composition-api'
-import { title, columns, edit, remove, getData } from './index'
+import { title, columns } from './index'
+import { confirmMsg } from 'src/libs/dialog'
 
 export default defineComponent({
-  name: 'ProjectsIndex',
+  name: 'projectsIndex',
   setup (_, { root }) {
     const vars = reactive({
+      data: computed(() => root.$store.state.project.data),
       title,
-      data: computed(() => root.$store.state.client.data),
       columns,
       filter: ''
     })
     const functions = {
       async loadData () {
-        await root.$store.dispatch('client/getData')
+        await root.$store.dispatch('project/getAll')
       },
       editRow (id: number) {
-        root.$router.push(`clients/${id}`)
+        void root.$router.push(`projects/edit/${id}`)
       },
-      async removeRow (id: number) {
-        await root.$store.dispatch('client/remove', id)
-        this.loadData()
+      removeRow (id: number) {
+        root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {
+          void root.$store.dispatch('project/remove', id)
+          void this.loadData()
+        })
       },
     }
-    functions.loadData()
+    void functions.loadData()
 
-    return { 
+    return {
       ...toRefs(vars),
       ...functions
     }

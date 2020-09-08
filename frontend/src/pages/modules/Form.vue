@@ -15,22 +15,45 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Module, create, update } from './index'
+import { get } from 'src/libs/api'
+import { Module, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'ModuleForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: {
         name: '',
-        group_id: 0
+        small_title: '',
+        model_name: '',
+        route_name: '', 
+        project_id: 0
       } as Module,
       groups: []
     })
     const functions = {
-      create,
-      update
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('module/create', vars.register)
+          root.$router.push('/modules')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('module/update', vars.register)
+          root.$router.push('/modules')
+        }
+      },
+      async main () {
+        const id = root.$route.params?.id
+        if (id) {
+          const response = await get(`modules/${id}`)
+          vars.register = response
+        }
+      }
     }
+    void functions.main()
 
     return { 
       ...toRefs(vars),

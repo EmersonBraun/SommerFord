@@ -2,28 +2,36 @@ import { RouteConfig } from 'vue-router';
 
 import auth from './auth'
 import clients from './clients'
+import devTypes from './devTypes'
+import fields from './fields'
 import groups from './groups'
+import manies from './manies'
 import modules from './modules'
 import paymentStatus from './paymentStatus'
 import payments from './payments'
 import phones from './phones'
 import project from './projects'
 import projectTypes from './projectTypes'
+import relations from './relations'
+import services from './services'
 import users from './users'
-import worspaces from './worspaces'
 
 const routes: RouteConfig[] = [
   ...auth,
   ...clients,
+  ...devTypes,
+  ...fields,
   ...groups,
+  ...manies,
   ...modules,
   ...paymentStatus,
   ...payments,
   ...phones,
   ...project,
   ...projectTypes,
+  ...relations,
+  ...services,
   ...users,
-  ...worspaces,
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),

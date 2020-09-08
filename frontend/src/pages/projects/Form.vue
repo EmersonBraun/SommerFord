@@ -27,28 +27,50 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Project, create, update } from './index'
+import { get } from 'src/libs/api'
+import { Project, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'ProjectForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: { 
         name: '',
         visual_identity: false,
         competitor: '',
+        project_type: '',
+        dev_type: '',
         client_id: 0,
-        project_type: 0,
-        dev_type_id: 0
+        start_date: '',
+        end_date: ''
       } as Project,
       clients: [],
       projectTypes: [],
       devTypes: []
     })
     const functions = {
-      create,
-      update
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('project/create', vars.register)
+          root.$router.push('/projects')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('project/update', vars.register)
+          root.$router.push('/projects')
+        }
+      },
+      async main () {
+        const id = root.$route.params?.id
+        if (id) {
+          const response = await get(`projects/${id}`)
+          vars.register = response
+        }
+      }
     }
+    void functions.main()
 
     return { 
       ...toRefs(vars),

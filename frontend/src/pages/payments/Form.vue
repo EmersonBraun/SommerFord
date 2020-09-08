@@ -26,11 +26,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Payment, create, update } from './index'
+import { get } from 'src/libs/api'
+import { Payment, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'PaymentForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: {
         value: 0,
@@ -40,8 +42,25 @@ export default defineComponent({
       payments: []
     })
     const functions = {
-      create,
-      update
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('payment/create', vars.register)
+          root.$router.push('/payments')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('payment/update', vars.register)
+          root.$router.push('/payments')
+        }
+      },
+      async main () {
+        const id = root.$route.params?.id
+        if (id) {
+          const response = await get(`payments/${id}`)
+          vars.register = response
+        }
+      }
     }
 
     return { 

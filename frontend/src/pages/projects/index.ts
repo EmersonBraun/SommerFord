@@ -1,4 +1,3 @@
-import { get, post, put, deleteData } from 'src/libs/api'
 export const module = 'projects'
 export const title = 'Projects'
 
@@ -7,41 +6,32 @@ export type Project = {
   name: string
   visual_identity: boolean
   competitor: string
+  project_type: string
+  dev_type: string
   client_id: number
-  project_type: number
-  dev_type_id: number
+  start_date: unknown
+  end_date: unknown
 }
 
 export const columns = [
   { name: 'name', label: 'Name', field: 'name', sortable: true },
-  { name: 'email', label: 'email', field: 'email' },
-  { name: 'role', label: 'role', field: 'role' },
+  { name: 'visual_identity', label: 'visual_identity', field: 'visual_identity', sortable: true },
+  { name: 'competitor', label: 'competitor', field: 'competitor', sortable: true },
+  { name: 'project_type', label: 'project_type', field: 'project_type', sortable: true },
+  { name: 'dev_type', label: 'dev_type', field: 'dev_type', sortable: true },
+  // { name: 'client_id', label: 'client_id', field: 'client_id', sortable: true },
+  { name: 'start_date', label: 'start_date', field: 'start_date', sortable: true },
+  { name: 'end_date', label: 'end_date', field: 'end_date', sortable: true },
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 
-export async function getData () {
-  const URL = `${module}`
-  return await get(URL, true)
-}
-
-export async function create (register: Project) {
-  const URL = `${module}`
-  return await post(URL, register)
-}
-
-export function edit (id: number) {
-  window.location.replace(`/${module}/edit/${id}`)
-  return true
-}
-
-export async function update (id: number, register: Project) {
-  const URL = `${module}/${id}`
-  return await post(URL, register)
-}
-
-export async function remove (id: number) {
-  const URL = `${module}/${id}`
-  return await deleteData(URL)
-}
-
-
+export const fields = [
+  'name',
+  'visual_identity',
+  'competitor',
+  'project_type',
+  'dev_type',
+  'client_id',
+  'start_date',
+  'end_date',
+]

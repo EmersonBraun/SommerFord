@@ -15,11 +15,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from '@vue/composition-api'
-import { Phone, create, update } from './index'
+import { get } from 'src/libs/api'
+import { Phone, fields } from './index'
+import { validate } from '../../libs/validator'
 
 export default defineComponent({
   name: 'PhoneForm',
-  setup (/*_, { refs, root }*/) {
+  setup (_, { refs, root }) {
     const vars = reactive({
       register: {
         phone: '',
@@ -27,9 +29,27 @@ export default defineComponent({
       } as Phone
     })
     const functions = {
-      create () {},
-      update () {}
+      async create() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('phone/create', vars.register)
+          root.$router.push('/phones')
+        }
+      },
+      async update() {
+        if (validate(refs, fields)) {
+          await root.$store.dispatch('phone/update', vars.register)
+          root.$router.push('/phones')
+        }
+      },
+      async main () {
+        const id = root.$route.params?.id
+        if (id) {
+          const response = await get(`phones/${id}`)
+          vars.register = response
+        }
+      }
     }
+    void functions.main()
 
     return { 
       ...toRefs(vars),

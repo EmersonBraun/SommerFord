@@ -1,5 +1,4 @@
-import { BaseModel, column, } from '@ioc:Adonis/Lucid/Orm'
-
+import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class DevType extends BaseModel {
   @column({ isPrimary: true })
@@ -7,5 +6,4 @@ export default class DevType extends BaseModel {
 
   @column()
   public dev_type: string
-
 }
