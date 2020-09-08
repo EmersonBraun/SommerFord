@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import PhonesRepository from 'App/Repositories/PhonesRepository'
-import { PhoneSchema } from 'App/Validators/PhoneSchema'
+import PhonesRepository from '../../Repositories/PhonesRepository'
+import { PhoneSchema } from '../../Validators/PhoneSchema'
 
 export default class PhonesController {
   private readonly repository

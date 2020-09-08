@@ -1,14 +1,16 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class ClientsHasPhones extends BaseSchema {
-  protected tableName = 'clients_has_phones'
+export default class Payments extends BaseSchema {
+  protected tableName = 'payments'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.integer('phone_id').unsigned().nullable()
-      table.integer('client_id').unsigned().nullable()
+      table.increments('id').nullable()
+      table.float('value').nullable()
+      table.date('date').notNullable()
+      table.integer('client_id').notNullable()
+      table.string('payment_status').notNullable()
 
-      table.foreign('phone_id').references('id').inTable('phones').onDelete('CASCADE')
       table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')
     })
   }

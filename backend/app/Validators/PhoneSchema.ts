@@ -1,6 +1,9 @@
-import { schema } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export const PhoneSchema = schema.create({
   phone: schema.string(),
-  whatsapp: schema.boolean(),
+  whatsapp: schema.string(),
+  client_id: schema.number([
+    rules.exists({ table: 'clients', column: 'id' }),
+  ]),
 })

@@ -3,7 +3,8 @@ import ProjectType from 'App/Models/ProjectType'
 
 export const ProjectTypeFactory = Factory
   .define(ProjectType, ({faker}) => ({
-    project_type: faker.lorem.words(),
+    id: faker.random.number({min:1, max:10}),
+    project_type: faker.lorem.words(3),
   }))
   .build()
 
@@ -13,5 +14,5 @@ export async function randomProjectTypeId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return Number(ids[Math.floor(Math.random() * ids.length)])
+  return ids[Math.floor(Math.random() * ids.length)]
 }

@@ -1,8 +1,8 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-// import { ModulesFactory } from '../factories/ModulesFactory'
+// import { ModuleFactory } from '../factories/ModuleFactory'
 
-export default class ModulesSeeder extends BaseSeeder {
+export default class ModuleSeeder extends BaseSeeder {
   public async run () {
-    // await ModulesFactory.createMany(10)
+    // await ModuleFactory.createMany(10)
   }
 }

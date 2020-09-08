@@ -2,15 +2,13 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export const ProjectSchema = schema.create({
   name: schema.string(),
-  visual_identity: schema.boolean(),
+  visual_identity: schema.string(),
   competitor: schema.string(),
+  project_type: schema.string(),
+  dev_type: schema.string(),
+  start_date: schema.date(),
+  end_date: schema.date(),
   client_id: schema.number([
     rules.exists({ table: 'clients', column: 'id' }),
-  ]),
-  project_type: schema.number([
-    rules.exists({ table: 'project_types', column: 'id' }),
-  ]),
-  dev_type_id: schema.number([
-    rules.exists({ table: 'dev_types', column: 'id' }),
   ]),
 })

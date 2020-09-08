@@ -7,15 +7,16 @@ export default class Projects extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').nullable()
       table.string('name').notNullable()
-      table.integer('client_id').notNullable()
-      table.integer('project_type').notNullable()
-      table.integer('dev_type_id').notNullable()
       table.boolean('visual_identity').nullable()
       table.string('competitor').nullable()
+      table.string('project_type').nullable()
+      table.string('dev_type').nullable()
+      table.integer('client_id').notNullable()
+      table.date('start_date').nullable()
+      table.date('end_date').nullable()
+      // table.timestamps()
 
       table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')
-      table.foreign('project_type').references('id').inTable('project_types').onDelete('CASCADE')
-      table.foreign('dev_type_id').references('id').inTable('dev_types').onDelete('CASCADE')
     })
   }
 

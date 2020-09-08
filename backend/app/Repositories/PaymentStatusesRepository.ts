@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import PaymentStatus from 'App/Models/PaymentStatus'
+import PaymentStatus from '../Models/PaymentStatus'
 
 class PaymentStatusesRepository {
   protected model: any

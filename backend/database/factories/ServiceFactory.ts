@@ -3,8 +3,8 @@ import Service from 'App/Models/Service'
 
 export const ServiceFactory = Factory
   .define(Service, ({faker}) => ({
-    service: faker.lorem.words(),
-    hour_needed: faker.lorem.words(),
+    service: faker.lorem.words(3),
+    hour_needed: faker.random.number({min:1, max:10}),
   }))
   .build()
 
@@ -14,5 +14,5 @@ export async function randomServiceId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return Number(ids[Math.floor(Math.random() * ids.length)])
+  return ids[Math.floor(Math.random() * ids.length)]
 }

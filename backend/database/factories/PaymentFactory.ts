@@ -1,12 +1,13 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import Payment from 'App/Models/Payment'
-import { randomPaymentStatusId } from './PaymentStatusFactory'
+import { randomClientId } from './ClientFactory'
 
 export const PaymentFactory = Factory
   .define(Payment, async ({faker}) => ({
-    value: faker.random.number(99),
+    value: faker.random.number(50),
     date: faker.date.future(1),
-    payment_status_id: await randomPaymentStatusId(),
+    payment_status: faker.lorem.words(3),
+    client_id: await randomClientId(),
   }))
   .build()
 
@@ -16,5 +17,5 @@ export async function randomPaymentId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return Number(ids[Math.floor(Math.random() * ids.length)])
+  return ids[Math.floor(Math.random() * ids.length)]
 }

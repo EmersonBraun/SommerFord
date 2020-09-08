@@ -1,25 +1,13 @@
-import { BaseModel, column, HasOne, hasOne, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 
 import Client from './Client'
-import ProjectType from './ProjectType'
-import DevType from './DevType'
-import Modules from './Modules'
 
 export default class Project extends BaseModel {
-  @column()
-  public id: string
+  @column({ isPrimary: true })
+  public id: number
 
   @column()
   public name: string
-
-  @column()
-  public client_id: number
-
-  @column()
-  public project_type: number
-
-  @column()
-  public dev_type_id: number
 
   @column()
   public visual_identity: boolean
@@ -27,17 +15,21 @@ export default class Project extends BaseModel {
   @column()
   public competitor: string
 
+  @column()
+  public project_type: string
+
+  @column()
+  public dev_type: string
+
+  @column()
+  public client_id: number
+
+  @column()
+  public start_date: Date
+
+  @column()
+  public end_date: Date
+
   @hasOne(() => Client)
   public client: HasOne<typeof Client>
-
-  @hasOne(() => ProjectType)
-  public projectType: HasOne<typeof ProjectType>
-
-  @hasOne(() => DevType)
-  public devType: HasOne<typeof DevType>
-
-  @manyToMany(() => Modules, {
-    pivotTable: 'projects_has_modules',
-  })
-  public modules: ManyToMany<typeof Modules>
 }

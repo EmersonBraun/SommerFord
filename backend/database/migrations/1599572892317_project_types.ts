@@ -1,12 +1,12 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class PaymentStatuses extends BaseSchema {
-  protected tableName = 'payment_statuses'
+export default class ProjectTypes extends BaseSchema {
+  protected tableName = 'project_types'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').nullable()
-      table.string('payment_status').notNullable()
+      table.string('project_type').nullable()
     })
   }
 

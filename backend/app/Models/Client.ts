@@ -1,11 +1,8 @@
-import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
-
-import Phone from './Phone'
-import Payment from './Payment'
+import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Client extends BaseModel {
-  @column()
-  public id: string
+  @column({ isPrimary: true })
+  public id: number
 
   @column()
   public name: string
@@ -15,14 +12,4 @@ export default class Client extends BaseModel {
 
   @column()
   public role: string
-
-  @manyToMany(() => Phone, {
-    pivotTable: 'clients_has_phones',
-  })
-  public phones: ManyToMany<typeof Phone>
-
-  @manyToMany(() => Payment, {
-    pivotTable: 'clients_has_payments',
-  })
-  public payments: ManyToMany<typeof Payment>
 }

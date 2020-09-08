@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import ClientsRepository from 'App/Repositories/ClientsRepository'
-import { ClientSchema } from 'App/Validators/ClientSchema'
+import ClientsRepository from '../../Repositories/ClientsRepository'
+import { ClientSchema } from '../../Validators/ClientSchema'
 
 export default class ClientsController {
   private readonly repository

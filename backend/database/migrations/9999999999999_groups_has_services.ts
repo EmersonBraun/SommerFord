@@ -5,11 +5,11 @@ export default class GroupsHasServices extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.integer('group_id').unsigned().nullable()
-      table.integer('service_id').unsigned().nullable()
+      table.integer('groups_id').unsigned().nullable()
+      table.integer('services_id').unsigned().nullable()
 
-      table.foreign('group_id').references('id').inTable('groups').onDelete('CASCADE')
-      table.foreign('service_id').references('id').inTable('services').onDelete('CASCADE')
+      table.foreign('groups_id').references('id').inTable('groups').onDelete('CASCADE')
+      table.foreign('services_id').references('id').inTable('services').onDelete('CASCADE')
     })
   }
 

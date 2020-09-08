@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import ServicesRepository from 'App/Repositories/ServicesRepository'
-import { ServiceSchema } from 'App/Validators/ServiceSchema'
+import ServicesRepository from '../../Repositories/ServicesRepository'
+import { ServiceSchema } from '../../Validators/ServiceSchema'
 
 export default class ServicesController {
   private readonly repository

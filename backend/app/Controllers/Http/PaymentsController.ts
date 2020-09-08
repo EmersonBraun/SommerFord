@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import PaymentsRepository from 'App/Repositories/PaymentsRepository'
-import { PaymentSchema } from 'App/Validators/PaymentSchema'
+import PaymentsRepository from '../../Repositories/PaymentsRepository'
+import { PaymentSchema } from '../../Validators/PaymentSchema'
 
 export default class PaymentsController {
   private readonly repository

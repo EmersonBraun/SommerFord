@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import ModulesRepository from 'App/Repositories/ModulesRepository'
-import { ModulesSchema } from 'App/Validators/ModulesSchema'
+import ModulesRepository from '../../Repositories/ModulesRepository'
+import { ModuleSchema } from '../../Validators/ModuleSchema'
 
 export default class ModulesController {
   private readonly repository
@@ -23,7 +23,7 @@ export default class ModulesController {
 
   async store ({ request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: ModulesSchema})
+      await request.validate({schema: ModuleSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       // console.log(error.messages.errors)
@@ -58,7 +58,7 @@ export default class ModulesController {
 
   async update ({ params, request, response }: HttpContextContract) {
     try {
-      await request.validate({schema: ModulesSchema})
+      await request.validate({schema: ModuleSchema})
     } catch (error) {
       const msg = error.messages.errors.map(e => `${e.field} is ${e.rule}`).join(', ')
       return response

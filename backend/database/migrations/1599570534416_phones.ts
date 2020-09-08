@@ -8,6 +8,9 @@ export default class Phones extends BaseSchema {
       table.increments('id').nullable()
       table.string('phone').notNullable()
       table.boolean('whatsapp').nullable()
+      table.integer('client_id').notNullable()
+
+      table.foreign('client_id').references('id').inTable('clients').onDelete('CASCADE')
     })
   }
 

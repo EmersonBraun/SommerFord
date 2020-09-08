@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import Modules from 'App/Models/Modules'
+import Module from '../Models/Module'
 
 class ModulesRepository {
   protected model: any
 
   constructor () {
-    this.model = Modules
+    this.model = Module
   }
 
   async first () {

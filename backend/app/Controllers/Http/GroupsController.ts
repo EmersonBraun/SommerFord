@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import GroupsRepository from 'App/Repositories/GroupsRepository'
-import { GroupSchema } from 'App/Validators/GroupSchema'
+import GroupsRepository from '../../Repositories/GroupsRepository'
+import { GroupSchema } from '../../Validators/GroupSchema'
 
 export default class GroupsController {
   private readonly repository

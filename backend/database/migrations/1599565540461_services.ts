@@ -1,12 +1,13 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class DevTypes extends BaseSchema {
-  protected tableName = 'dev_types'
+export default class Services extends BaseSchema {
+  protected tableName = 'services'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').nullable()
-      table.string('dev_type').notNullable()
+      table.string('service').notNullable()
+      table.float('hour_needed').notNullable()
     })
   }
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import Service from 'App/Models/Service'
+import Service from '../Models/Service'
 
 class ServicesRepository {
   protected model: any

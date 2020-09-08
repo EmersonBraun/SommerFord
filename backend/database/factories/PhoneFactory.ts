@@ -1,10 +1,12 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
 import Phone from 'App/Models/Phone'
+import { randomClientId } from './ClientFactory'
 
 export const PhoneFactory = Factory
-  .define(Phone, ({faker}) => ({
-    phone: faker.lorem.words(),
-    whatsapp: faker.lorem.words(),
+  .define(Phone, async ({faker}) => ({
+    phone: faker.lorem.words(3),
+    whatsapp: faker.random.boolean(),
+    client_id: await randomClientId(),
   }))
   .build()
 
@@ -14,5 +16,5 @@ export async function randomPhoneId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return Number(ids[Math.floor(Math.random() * ids.length)])
+  return ids[Math.floor(Math.random() * ids.length)]
 }

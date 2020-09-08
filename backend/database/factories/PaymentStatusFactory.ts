@@ -3,7 +3,7 @@ import PaymentStatus from 'App/Models/PaymentStatus'
 
 export const PaymentStatusFactory = Factory
   .define(PaymentStatus, ({faker}) => ({
-    payment_status: faker.lorem.words(),
+    payment_status: faker.lorem.words(3),
   }))
   .build()
 
@@ -13,5 +13,5 @@ export async function randomPaymentStatusId () {
     return 0
   }
   const ids = req.map(r => r.id)
-  return Number(ids[Math.floor(Math.random() * ids.length)])
+  return ids[Math.floor(Math.random() * ids.length)]
 }

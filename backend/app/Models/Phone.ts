@@ -1,19 +1,20 @@
-import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 
 import Client from './Client'
 
 export default class Phone extends BaseModel {
-  @column()
-  public id: string
+  @column({ isPrimary: true })
+  public id: number
 
   @column()
   public phone: string
 
   @column()
-  public whatsapp: string
+  public whatsapp: boolean
 
-  @manyToMany(() => Client, {
-    pivotTable: 'clients_has_phones',
-  })
-  public client: ManyToMany<typeof Client>
+  @column()
+  public client_id: number
+
+  @hasOne(() => Client)
+  public client: HasOne<typeof Client>
 }

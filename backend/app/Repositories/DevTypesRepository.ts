@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
-import DevType from 'App/Models/DevType'
+import DevType from '../Models/DevType'
 
 class DevTypesRepository {
   protected model: any

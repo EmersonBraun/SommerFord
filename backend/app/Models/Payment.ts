@@ -1,9 +1,9 @@
 import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
-// import { DateTime } from 'luxon'
-import PaymentStatus from './PaymentStatus'
+
+import Client from './Client'
 
 export default class Payment extends BaseModel {
-  @column()
+  @column({ isPrimary: true })
   public id: number
 
   @column()
@@ -13,8 +13,11 @@ export default class Payment extends BaseModel {
   public date: Date
 
   @column()
-  public payment_status_id: number
+  public client_id: number
 
-  @hasOne(() => PaymentStatus)
-  public paymentStatus: HasOne<typeof PaymentStatus>
+  @column()
+  public payment_status: string
+
+  @hasOne(() => Client)
+  public client: HasOne<typeof Client>
 }
