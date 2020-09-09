@@ -8,28 +8,28 @@ import group from './groups';
 import many from './manies';
 import module from './modules';
 import payment from './payments';
-import paymentsStatus from './paymentsStatuses';
+import paymentStatus from './paymentsStatuses';
 import phone from './phones';
 import project from './projects';
-import projectsType from './projectsTypes';
+import projectType from './projectsTypes';
 import relation from './relations';
 import service from './services';
 import user from './users';
 
-import { ClientsStateInterface } from './clients/state';
-import { DevTypesStateInterface } from './devTypes/state';
-import { FieldsStateInterface } from './fields/state';
-import { GroupsStateInterface } from './groups/state';
-import { ManiesStateInterface } from './manies/state';
-import { ModulesStateInterface } from './modules/state';
-import { PaymentsStateInterface } from './payments/state';
-import { PaymentsStatusesStateInterface } from './paymentsStatuses/state';
-import { PhonesStateInterface } from './phones/state';
-import { ProjectsStateInterface } from './projects/state';
-import { ProjectsTypesStateInterface } from './projectsTypes/state';
-import { RelationsStateInterface } from './relations/state';
-import { ServicesStateInterface } from './services/state';
-import { UsersStateInterface } from './users/state';
+import { ClientStateInterface } from './clients/state';
+import { DevTypeStateInterface } from './devTypes/state';
+import { FieldStateInterface } from './fields/state';
+import { GroupStateInterface } from './groups/state';
+import { ManyStateInterface } from './manies/state';
+import { ModuleStateInterface } from './modules/state';
+import { PaymentStateInterface } from './payments/state';
+import { PaymentStatusStateInterface } from './paymentsStatuses/state';
+import { PhoneStateInterface } from './phones/state';
+import { ProjectStateInterface } from './projects/state';
+import { ProjectTypeStateInterface } from './projectsTypes/state';
+import { RelationStateInterface } from './relations/state';
+import { ServiceStateInterface } from './services/state';
+import { UserStateInterface } from './users/state';
 
 
 /*
@@ -39,20 +39,20 @@ import { UsersStateInterface } from './users/state';
 
 export interface StateInterface {
   // Define your own store structure, using submodules if needed
-  clients: ClientsStateInterface;
-  devTypes: DevTypesStateInterface;
-  fields: FieldsStateInterface;
-  groups: GroupsStateInterface;
-  manies: ManiesStateInterface;
-  modules: ModulesStateInterface;
-  payments: PaymentsStateInterface;
-  paymentsStatuses: PaymentsStatusesStateInterface;
-  phones: PhonesStateInterface;
-  projects: ProjectsStateInterface;
-  projectsTypes: ProjectsTypesStateInterface;
-  relations: RelationsStateInterface;
-  services: ServicesStateInterface;
-  users: UsersStateInterface;
+  clients: ClientStateInterface;
+  devTypes: DevTypeStateInterface;
+  fields: FieldStateInterface;
+  groups: GroupStateInterface;
+  manies: ManyStateInterface;
+  modules: ModuleStateInterface;
+  payments: PaymentStateInterface;
+  paymentsStatuses: PaymentStatusStateInterface;
+  phones: PhoneStateInterface;
+  projects: ProjectStateInterface;
+  projectsTypes: ProjectTypeStateInterface;
+  relations: RelationStateInterface;
+  services: ServiceStateInterface;
+  users: UserStateInterface;
 
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   // example: unknown;
@@ -70,10 +70,10 @@ export default store(function ({ Vue }) {
       many,
       module,
       payment,
-      paymentsStatus,
+      paymentStatus,
       phone,
       project,
-      projectsType,
+      projectType,
       relation,
       service,
       user,

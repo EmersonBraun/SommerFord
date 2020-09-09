@@ -1,16 +1,10 @@
-import { Client } from 'src/pages/clients'
-export interface ClientStateInterface {
-  data: Client[];
-  register: Client;
+import { Field } from 'src/pages/fields'
+export interface FieldStateInterface {
+  data: Field[];
 }
 
-const state: ClientStateInterface = {
+const state: FieldStateInterface = {
   data: [],
-  register: {
-    name: '',
-    email: '',
-    role: '',
-  }
 };
 
 export default state;

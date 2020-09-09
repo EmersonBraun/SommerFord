@@ -5,6 +5,9 @@
         <div class="q-pa-md col-12">
           <q-input clearable v-model="register.project_type" outlined label="project_type" ref="project_type" :rules="[ $rules.required('project_type is required') ]"/>
         </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

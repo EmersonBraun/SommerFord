@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Loading, LocalStorage } from 'quasar'
 import axios, { AxiosResponse } from 'axios'
 import PrettyLog from '@emersonbraun/pretty-log/src'
@@ -17,8 +19,8 @@ const headers = {
 } as Headers
 
 function getToken () {
-  const token = LocalStorage.getItem('token')?.toString
-  return token ? `Bearer ${token}` : null
+  const token = LocalStorage.getItem('token')
+  return token ? `Bearer ${String(token)}` : ''
 }
 
 function setHeaders (file = false) {

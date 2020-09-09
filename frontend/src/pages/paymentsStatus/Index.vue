@@ -25,7 +25,7 @@
             </q-td>
           </template>
         </q-table>
-        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/paymentStatuss/create`"/>
+        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/payment-statuses/create`"/>
       </q-card-section>
     </q-card>
   </q-page>
@@ -37,7 +37,7 @@ import { title, columns } from './index'
 import { confirmMsg } from 'src/libs/dialog'
 
 export default defineComponent({
-  name: 'paymentStatussIndex',
+  name: 'paymentStatusIndex',
   setup (_, { root }) {
     const vars = reactive({
       data: computed(() => root.$store.state.paymentStatus.data),
@@ -50,7 +50,7 @@ export default defineComponent({
         await root.$store.dispatch('paymentStatus/getAll')
       },
       editRow (id: number) {
-        void root.$router.push(`paymentStatuss/edit/${id}`)
+        void root.$router.push(`payment-statuses/edit/${id}`)
       },
       removeRow (id: number) {
         root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {

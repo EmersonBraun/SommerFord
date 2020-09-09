@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/projectTypes',
+    path: '/project-types',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/projectTypes/Index.vue') },

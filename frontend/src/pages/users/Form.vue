@@ -9,7 +9,7 @@
           <q-input clearable v-model="register.email" outlined label="email" ref="email" :rules="[ $rules.required('email is required') ]"/>
         </div>
         <div class="q-pa-md col-12">
-          <q-input ref="password" outlined clearable  v-model="registry.password" :type="isPwd ? 'password' : 'text'" placeholder="Password" :rules="[ $rules.required('Senha é obrigatória') ]">
+          <q-input ref="password" outlined clearable  v-model="register.password" :type="isPwd ? 'password' : 'text'" placeholder="Password" :rules="[ $rules.required('Senha é obrigatória') ]">
             <template v-slot:prepend>
               <q-icon color="grey-9" name="vpn_key" />
             </template>
@@ -25,6 +25,9 @@
         </div>
         <div class="q-pa-md col-12">
           <q-toggle hide-bottom-space v-model="register.is_admin" label="is_admin" ref="is_admin"/>
+        </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
         </div>
       </q-card-section>
     </q-card>

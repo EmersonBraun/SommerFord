@@ -1,11 +1,11 @@
 export default [
   {
-    path: '/projectTypes',
+    path: '/relations',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/projectTypes/Index.vue') },
-      { path: 'create', component: () => import('pages/projectTypes/Form.vue') },
-      { path: 'edit/:id', component: () => import('pages/projectTypes/Form.vue') },
+      { path: '', component: () => import('pages/relations/Index.vue') },
+      { path: 'create', component: () => import('pages/relations/Form.vue') },
+      { path: 'edit/:id', component: () => import('pages/relations/Form.vue') },
     ]
   }
 ]

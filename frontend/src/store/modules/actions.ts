@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
-import { ClientStateInterface } from './state';
+import { ModuleStateInterface } from './state';
 import { get, post, put, deleteData } from 'src/libs/api'
-const module = 'clients'
+const module = 'modules'
 
-const actions: ActionTree<ClientStateInterface, StateInterface> = {
+const actions: ActionTree<ModuleStateInterface, StateInterface> = {
   async getAll (context) {
     const response = await get(`${module}`)
     context.commit('getAll', response)
   },
-  async create (context, register: object) {
+  async create (context, register: Record<string, unknown>) {
     await post(`${module}`, register)
     const response = await get(`${module}`)
     context.commit('getAll', response)
   },
-  async update (context, register: object) {
+  async update (context, register: Record<string, unknown>) {
     await put(`${module}/${register.id}`, register)
     const response = await get(`${module}`)
     context.commit('getAll', response)

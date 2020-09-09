@@ -8,6 +8,9 @@
         <div class="q-pa-md col-12">
           <q-select hide-bottom-space clearable outlined v-model="register.group_id" emit-value map-options :options="groups" label="group_id" ref="group_id" :rules="[ $rules.required('group_id é obrigatória') ]"/>
         </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

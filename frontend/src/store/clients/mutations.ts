@@ -3,7 +3,7 @@ import { ClientStateInterface } from './state';
 import { Client } from 'src/pages/clients';
 
 const mutation: MutationTree<ClientStateInterface> = {
-  async getAll (state: ClientStateInterface, payload) {
+  getAll (state: ClientStateInterface, payload: Client[]) {
     state.data = payload
   },
 };

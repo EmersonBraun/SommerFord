@@ -1,9 +1,9 @@
 import { MutationTree } from 'vuex';
-import { ClientStateInterface } from './state';
-import { Client } from 'src/pages/clients';
+import { UserStateInterface } from './state';
+import { User } from 'src/pages/users';
 
-const mutation: MutationTree<ClientStateInterface> = {
-  async getAll (state: ClientStateInterface, payload) {
+const mutation: MutationTree<UserStateInterface> = {
+  getAll (state: UserStateInterface, payload: User[]) {
     state.data = payload
   },
 };

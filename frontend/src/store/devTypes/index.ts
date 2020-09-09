@@ -1,11 +1,11 @@
 import { Module } from 'vuex';
 import { StateInterface } from '../index';
-import state, { ClientStateInterface } from './state';
+import state, { DevTypeStateInterface } from './state';
 import actions from './actions';
 import getters from './getters';
 import mutations from './mutations';
 
-const client: Module<ClientStateInterface, StateInterface> = {
+const devType: Module<DevTypeStateInterface, StateInterface> = {
   namespaced: true,
   actions,
   getters,
@@ -13,4 +13,4 @@ const client: Module<ClientStateInterface, StateInterface> = {
   state
 };
 
-export default client;
+export default devType;

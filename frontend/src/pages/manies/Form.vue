@@ -5,6 +5,9 @@
         <div class="q-pa-md col-12">
           <q-input clearable v-model="register.group" outlined label="group" ref="group" :rules="[ $rules.required('group is required') ]"/>
         </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

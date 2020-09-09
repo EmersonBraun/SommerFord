@@ -20,6 +20,9 @@
         <div class="q-pa-md col-12">
           <q-select hide-bottom-space clearable outlined v-model="register.dev_type_id" emit-value map-options :options="devTypes" label="dev_type_id" ref="dev_type_id" :rules="[ $rules.required('dev_type_id é obrigatória') ]"/>
         </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

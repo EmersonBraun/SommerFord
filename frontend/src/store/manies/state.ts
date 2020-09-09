@@ -1,16 +1,10 @@
-import { Client } from 'src/pages/clients'
-export interface ClientStateInterface {
-  data: Client[];
-  register: Client;
+import { Many } from 'src/pages/manies'
+export interface ManyStateInterface {
+  data: Many[];
 }
 
-const state: ClientStateInterface = {
+const state: ManyStateInterface = {
   data: [],
-  register: {
-    name: '',
-    email: '',
-    role: '',
-  }
 };
 
 export default state;

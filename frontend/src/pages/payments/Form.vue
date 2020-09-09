@@ -19,6 +19,9 @@
         <div class="q-pa-md col-12">
           <q-select hide-bottom-space clearable outlined v-model="register.payment_status" emit-value map-options :options="payments" label="payment_status" ref="payment_status" :rules="[ $rules.required('payment_status é obrigatória') ]"/>
         </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-page>

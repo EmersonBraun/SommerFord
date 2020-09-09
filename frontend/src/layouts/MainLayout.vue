@@ -53,15 +53,20 @@
             <q-menu auto-close>
               <q-list dense style="min-width: 100px">
                 <q-item-label header>Main functions</q-item-label>
-                <q-item clickable class="GL__menu-link" to="/workspaces">
-                  <q-item-section>Workspaces</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/groups">
-                  <q-item-section>Group Services</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/services">
-                  <q-item-section>Services</q-item-section>
-                </q-item>
+                <q-item clickable class="GL__menu-link" to="/clients"><q-item-section>clients</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/dev-types"><q-item-section>dev-types</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/fields"><q-item-section>fields</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/groups"><q-item-section>groups</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/manies"><q-item-section>manies</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/modules"><q-item-section>modules</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/payments"><q-item-section>payments</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/payment-statuses"><q-item-section>payment-statuses</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/phones"><q-item-section>phones</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/projects"><q-item-section>projects</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/project-types"><q-item-section>project-types</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/relations"><q-item-section>relations</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/services"><q-item-section>services</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/users"><q-item-section>users</q-item-section></q-item>
               </q-list>
             </q-menu>
           </q-btn>
@@ -110,18 +115,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs } from '@vue/composition-api';
 // import Search from 'components/_main/Search.vue'
 import { fabGithub } from '@quasar/extras/fontawesome-v5'
-const stringOptions = [
-  'quasarframework/quasar',
-  'quasarframework/quasar-awesome'
-]
 
 export default defineComponent({
   name: 'MainLayout',
   // components: { Search },
-  setup(_, { root }) {
+  setup() {
     const vars = reactive({
       leftDrawerOpen: false,
       fabGithub
