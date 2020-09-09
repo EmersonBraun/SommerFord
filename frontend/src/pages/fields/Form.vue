@@ -28,7 +28,7 @@
             :options="fieldTypes"
             label="Field type"
             ref="field_type"
-            :rules="[ $rules.minValue(1, 'Field Type is required') ]"
+            :rules="[ $rules.required('Field Type is required') ]"
             />
         </div>
         <div class="q-pa-md col-12">
@@ -48,7 +48,8 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs} from '@vue/composition-api'
 import { get } from 'src/libs/api'
-import { Field, fields, fieldTypes } from './index'
+import { fieldTypes } from 'src/config/selects'
+import { Field, fields } from './index'
 import { validate } from '../../libs/validator'
 
 export default defineComponent({

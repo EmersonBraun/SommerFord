@@ -41,6 +41,22 @@ export async function all (Model) {
   return { data, statusCode, returnType, message, contentError }
 }
 
+export async function count (Model) {
+  try{
+    data = await Model.query().count('').first()
+    data = data['count(*)']
+  } catch(error) {
+    logError('count', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'load')
+  returnType = getHappen(statusCode)
+  message = getMessage('load', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+
 export async function withTrashed (Model) {
   try{
     data = await Model.where('deleted_at', '<>', null).fetch()

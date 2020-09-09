@@ -25,7 +25,7 @@
             </q-td>
           </template>
         </q-table>
-        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/devTypes/create`"/>
+        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/dev-types/create`"/>
       </q-card-section>
     </q-card>
   </q-page>

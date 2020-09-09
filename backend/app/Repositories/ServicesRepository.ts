@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
+import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, count } from '../Services/CRUD'
 import Service from '../Models/Service'
 
 class ServicesRepository {
@@ -16,6 +16,10 @@ class ServicesRepository {
 
   async all () {
     return await all(this.model)
+  }
+
+  async count () {
+    return await count(this.model)
   }
 
   async find (id) {

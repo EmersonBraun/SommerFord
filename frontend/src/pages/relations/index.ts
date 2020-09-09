@@ -3,6 +3,7 @@ export const title = 'Relations'
 
 export type Relation = {
   id?: number
+  name: string
   model_name: string
   table_name: string
   field_id: number
@@ -10,6 +11,7 @@ export type Relation = {
 }
 
 export const columns = [
+  { name: 'name', label: 'name', field: 'name', sortable: true },
   { name: 'model_name', label: 'model_name', field: 'model_name', sortable: true },
   { name: 'table_name', label: 'table_name', field: 'table_name', sortable: true },
   { name: 'field_type', label: 'field_type', field: 'field_type', sortable: true },
@@ -18,6 +20,7 @@ export const columns = [
 ]
 
 export const fields = [
+  'name',
   'model_name',
   'table_name',
   'field_id',

@@ -88,7 +88,6 @@ import { defineComponent, reactive, toRefs } from '@vue/composition-api'
 import { get } from 'src/libs/api'
 import { Project, fields } from './index'
 import { validate } from '../../libs/validator'
-import Project from 'src/store/projects'
 
 export default defineComponent({
   name: 'ProjectForm',

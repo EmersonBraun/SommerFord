@@ -11,6 +11,8 @@ export default class Modules extends BaseSchema {
       table.string('small_title').nullable()
       table.string('model_name').nullable()
       table.string('route_name').notNullable()
+      table.date('start_date').nullable()
+      table.date('end_date').nullable()
 
       table.foreign('project_id').references('id').inTable('projects').onDelete('CASCADE')
     })

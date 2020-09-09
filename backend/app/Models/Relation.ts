@@ -7,6 +7,9 @@ export default class Relation extends BaseModel {
   public id: number
 
   @column()
+  public name: string
+
+  @column()
   public model_name: string
 
   @column()

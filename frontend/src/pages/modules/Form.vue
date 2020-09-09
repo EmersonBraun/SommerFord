@@ -15,6 +15,28 @@
           <q-input clearable v-model="register.route_name" outlined label="Route name" ref="route_name" :rules="[ $rules.required('Route name is required') ]"/>
         </div>
         <div class="q-pa-md col-6">
+          <q-input hide-bottom-space outlined ref="start_date" v-model="register.start_date" label="Start date" mask="####-##-##" :rules="[ $rules.required('Start date is required') ]">
+            <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="register.start_date" @input="() => $refs.qDateProxy.hide()" today-btn mask="YYYY-MM-DD"/>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
+        <div class="q-pa-md col-6">
+          <q-input hide-bottom-space outlined v-model="register.end_date" label="End date" mask="####-##-##">
+            <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="register.end_date" @input="() => $refs.qDateProxy.hide()" today-btn mask="YYYY-MM-DD"/>
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
+        </div>
+        <div class="q-pa-md col-6">
           <q-select
             hide-bottom-space
             clearable outlined
@@ -52,6 +74,8 @@ export default defineComponent({
         small_title: '',
         model_name: '',
         route_name: '', 
+        start_date: '',
+        end_date: '',
         project_id: 0
       } as Module,
       projects: [] as unknown

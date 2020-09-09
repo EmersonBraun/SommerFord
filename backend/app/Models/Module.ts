@@ -22,6 +22,12 @@ export default class Module extends BaseModel {
   @column()
   public route_name: string
 
+  @column()
+  public start_date: Date
+
+  @column()
+  public end_date: Date
+
   @hasOne(() => Project)
   public project: HasOne<typeof Project>
 

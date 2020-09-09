@@ -9,6 +9,8 @@ export const ModuleFactory = Factory
     model_name: faker.lorem.words(3),
     route_name: faker.lorem.words(3),
     project_id: await randomProjectId(),
+    start_date: faker.date.future(2),
+    end_date: faker.date.future(2),
   }))
   .build()
 

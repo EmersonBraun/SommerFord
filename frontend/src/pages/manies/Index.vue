@@ -25,7 +25,7 @@
             </q-td>
           </template>
         </q-table>
-        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/manys/create`"/>
+        <q-btn color="primary" icon="fa fa-plus" class="full-width" label="create" :to="`/manies/create`"/>
       </q-card-section>
     </q-card>
   </q-page>
@@ -50,7 +50,7 @@ export default defineComponent({
         await root.$store.dispatch('many/getAll')
       },
       editRow (id: number) {
-        void root.$router.push(`manys/edit/${id}`)
+        void root.$router.push(`manies/edit/${id}`)
       },
       removeRow (id: number) {
         root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {

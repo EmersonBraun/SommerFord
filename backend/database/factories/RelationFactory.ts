@@ -4,6 +4,7 @@ import { randomFieldId } from './FieldFactory'
 
 export const RelationFactory = Factory
   .define(Relation, async ({faker}) => ({
+    name: faker.lorem.words(3),
     model_name: faker.lorem.words(3),
     table_name: faker.lorem.words(3),
     field_type: faker.lorem.words(3),

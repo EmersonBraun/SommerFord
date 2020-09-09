@@ -2,8 +2,18 @@
   <q-layout view="lHh Lpr lFf" class="bg-grey-1">
     <q-header elevated class="text-white" style="background: #24292e" height-hint="61.59">
       <q-toolbar class="q-py-sm q-px-md">
-        <q-btn round dense flat :ripple="false" icon="img:icons/programming.svg" size="19px" color="white" class="q-mr-sm" no-caps />
-
+        <q-btn
+        dense
+        flat
+        :ripple="false"
+        icon="img:icons/002-hosting.svg"
+        size="22px"
+        color="white"
+        class="q-mr-sm"
+        no-caps
+        to="/"
+        label="SOMMERFORD"
+        />
         <div class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
           <q-btn dense flat to="/projects/create">
             <q-icon name="fa fa-plus" size="20px" />
@@ -12,67 +22,61 @@
         </div>
         <q-space />
         <!-- <search /> -->
-        <q-space />
 
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
-          <q-btn v-if="$q.screen.gt.xs" dense flat>
+          <q-btn dense flat>
             <div class="row items-center no-wrap">
-              <q-icon name="fa fa-users" size="20px" />
+              <q-icon name="img:icons/008-development.svg" size="40px" />
               <q-icon name="arrow_drop_down" size="20px" style="margin-left: -2px" />
             </div>
             <q-menu auto-close>
               <q-list dense style="min-width: 100px">
-                <q-item-label header>Users</q-item-label>
-                <q-item clickable class="GL__menu-link" to="/projects">
-                  <q-item-section>Projects</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/projectTypes">
-                  <q-item-section>Projects Types</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/modules">
-                  <q-item-section>Modules</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/users">
-                  <q-item-section>Users</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/payments">
-                  <q-item-section>Payments</q-item-section>
-                </q-item>
-                <q-item clickable class="GL__menu-link" to="/paymentsStatus">
-                  <q-item-section>Payments Status</q-item-section>
-                </q-item>
+                <q-item-label header>Clients Data</q-item-label>
+                <q-item clickable class="GL__menu-link" to="/clients"><q-item-section>Clients</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/payments"><q-item-section>Payments</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/phones"><q-item-section>Phones</q-item-section></q-item>
+                <q-item-label header>Clients admin</q-item-label>
+                <q-item clickable class="GL__menu-link" to="/payment-statuses"><q-item-section>Payments Status</q-item-section></q-item>
               </q-list>
             </q-menu>
           </q-btn>
 
-          <q-btn v-if="$q.screen.gt.xs" dense flat>
+          <q-btn dense flat>
             <div class="row items-center no-wrap">
-              <q-icon name="fa fa-cogs" size="20px" />
+              <q-icon name="img:icons/003-coding.svg" size="40px" />
               <q-icon name="arrow_drop_down" size="20px" style="margin-left: -2px" />
             </div>
             <q-menu auto-close>
               <q-list dense style="min-width: 100px">
-                <q-item-label header>Main functions</q-item-label>
-                <q-item clickable class="GL__menu-link" to="/clients"><q-item-section>clients</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/dev-types"><q-item-section>dev-types</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/fields"><q-item-section>fields</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/groups"><q-item-section>groups</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/manies"><q-item-section>manies</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/modules"><q-item-section>modules</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/payments"><q-item-section>payments</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/payment-statuses"><q-item-section>payment-statuses</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/phones"><q-item-section>phones</q-item-section></q-item>
+                <q-item-label header>Projects</q-item-label>
                 <q-item clickable class="GL__menu-link" to="/projects"><q-item-section>projects</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/project-types"><q-item-section>project-types</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/modules"><q-item-section>modules</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/fields"><q-item-section>fields</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/manies"><q-item-section>manies</q-item-section></q-item>
                 <q-item clickable class="GL__menu-link" to="/relations"><q-item-section>relations</q-item-section></q-item>
+                <q-item-label header>Projects Admin</q-item-label>
+                <q-item clickable class="GL__menu-link" to="/dev-types"><q-item-section>dev-types</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/project-types"><q-item-section>project-types</q-item-section></q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+
+          <q-btn dense flat>
+            <div class="row items-center no-wrap">
+              <q-icon name="img:icons/005-tablet.svg" size="40px" />
+              <q-icon name="arrow_drop_down" size="20px" style="margin-left: -2px" />
+            </div>
+            <q-menu auto-close>
+              <q-list dense style="min-width: 100px">
+                <q-item-label header>Services</q-item-label>
                 <q-item clickable class="GL__menu-link" to="/services"><q-item-section>services</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/users"><q-item-section>users</q-item-section></q-item>
+                <q-item clickable class="GL__menu-link" to="/groups"><q-item-section>groups</q-item-section></q-item>
               </q-list>
             </q-menu>
           </q-btn>
 
           <q-btn dense flat no-wrap>
-            <q-icon name="fa fa-user" size="20px" />
+            <q-icon name="img:icons/001-gamer.svg" size="40px" />
             <q-icon name="arrow_drop_down" size="20px" style="margin-left: -2px" />
 
             <q-menu auto-close>
@@ -92,6 +96,7 @@
                   </q-item-section>
                 </q-item>
                 <q-separator />
+                <q-item clickable class="GL__menu-link" to="/users"><q-item-section>users</q-item-section></q-item>
                 <q-item clickable class="GL__menu-link">
                   <q-item-section>Help</q-item-section>
                 </q-item>
