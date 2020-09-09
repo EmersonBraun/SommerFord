@@ -50,7 +50,7 @@ export default defineComponent({
         await root.$store.dispatch('projectType/getAll')
       },
       editRow (id: number) {
-        void root.$router.push(`projectTypes/edit/${id}`)
+        void root.$router.push(`project-types/edit/${id}`)
       },
       removeRow (id: number) {
         root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {

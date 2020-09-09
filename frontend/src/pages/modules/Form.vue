@@ -2,11 +2,31 @@
   <q-page class="doc-container q-pa-md">
     <q-card flat>
       <q-card-section class="row">
-        <div class="q-pa-md col-12">
+        <div class="q-pa-md col-6">
           <q-input clearable v-model="register.name" outlined label="Name" ref="name" :rules="[ $rules.required('Name is required') ]"/>
         </div>
-        <div class="q-pa-md col-12">
-          <q-select hide-bottom-space clearable outlined v-model="register.group_id" emit-value map-options :options="groups" label="group_id" ref="group_id" :rules="[ $rules.required('group_id é obrigatória') ]"/>
+        <div class="q-pa-md col-6">
+          <q-input clearable v-model="register.small_title" outlined label="Small title" ref="small_title"/>
+        </div>
+        <div v-if="register.name" class="q-pa-md col-6">
+          <q-input clearable v-model="register.model_name" outlined label="Model name" ref="model_name" :rules="[ $rules.required('Model Name is required') ]"/>
+        </div>
+        <div v-if="register.name" class="q-pa-md col-6">
+          <q-input clearable v-model="register.route_name" outlined label="Route name" ref="route_name" :rules="[ $rules.required('Route name is required') ]"/>
+        </div>
+        <div class="q-pa-md col-6">
+          <q-select
+            hide-bottom-space
+            clearable outlined
+            v-model="register.project_id"
+            emit-value map-options
+            :options="projects"
+            option-value="id"
+            option-label="name"
+            label="Project"
+            ref="project_id"
+            :rules="[ $rules.minValue(1, 'Project is required') ]"
+            />
         </div>
         <div class="q-pa-md col-12">
           <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
@@ -17,7 +37,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from '@vue/composition-api'
+import { defineComponent, reactive, toRefs, watch } from '@vue/composition-api'
+import { toPascalCase, toKebabCasePlural } from 'src/libs/name'
 import { get } from 'src/libs/api'
 import { Module, fields } from './index'
 import { validate } from '../../libs/validator'
@@ -33,7 +54,7 @@ export default defineComponent({
         route_name: '', 
         project_id: 0
       } as Module,
-      groups: []
+      projects: [] as unknown
     })
     const functions = {
       async create() {
@@ -54,10 +75,15 @@ export default defineComponent({
           const response = await get(`modules/${id}`)
           vars.register = response
         }
+        vars.projects = await get('projects')
       }
     }
     void functions.main()
 
+    watch(() => vars.register.name, () => {
+      vars.register.model_name = toPascalCase(vars.register.name)
+      vars.register.route_name = toKebabCasePlural(vars.register.name)
+    })
     return { 
       ...toRefs(vars),
       ...functions

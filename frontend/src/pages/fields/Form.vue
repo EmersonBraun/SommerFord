@@ -6,10 +6,36 @@
           <q-input clearable v-model="register.name" outlined label="Name" ref="name" :rules="[ $rules.required('Name is required') ]"/>
         </div>
         <div class="q-pa-md col-12">
-          <q-input clearable v-model="register.email" outlined label="Email" ref="email" :rules="[ $rules.required('email is required') ]"/>
+          <q-select
+            hide-bottom-space
+            clearable outlined
+            v-model="register.module_id"
+            emit-value map-options
+            :options="modules"
+            option-value="id"
+            option-label="name"
+            label="Module"
+            ref="module_id"
+            :rules="[ $rules.minValue(1, 'Module is required') ]"
+            />
         </div>
         <div class="q-pa-md col-12">
-          <q-input clearable v-model="register.role" outlined label="Role" ref="role" :rules="[ $rules.required('Role is required') ]"/>
+          <q-select
+            hide-bottom-space
+            clearable outlined
+            v-model="register.field_type"
+            emit-value map-options
+            :options="fieldTypes"
+            label="Field type"
+            ref="field_type"
+            :rules="[ $rules.minValue(1, 'Field Type is required') ]"
+            />
+        </div>
+        <div class="q-pa-md col-12">
+          <q-toggle hide-bottom-space v-model="register.required" label="Required"/>
+        </div>
+        <div class="q-pa-md col-12">
+          <q-toggle hide-bottom-space v-model="register.relationed" label="Relationed"/>
         </div>
         <div class="q-pa-md col-12">
           <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
@@ -22,7 +48,7 @@
 <script lang="ts">
 import { defineComponent, reactive, toRefs} from '@vue/composition-api'
 import { get } from 'src/libs/api'
-import { Field, fields } from './index'
+import { Field, fields, fieldTypes } from './index'
 import { validate } from '../../libs/validator'
 
 export default defineComponent({
@@ -35,7 +61,9 @@ export default defineComponent({
         field_type: '',
         required: false,
         relationed: false,
-      } as Field
+      } as Field,
+      modules: [] as unknown,
+      fieldTypes
     })
     const functions = {
       async create() {
@@ -56,6 +84,7 @@ export default defineComponent({
           const response = await get(`fields/${id}`)
           vars.register = response
         }
+        vars.modules = await get('modules')
       }
     }
     void functions.main()

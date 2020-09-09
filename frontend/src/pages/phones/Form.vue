@@ -3,10 +3,27 @@
     <q-card flat>
       <q-card-section class="row">
        <div class="q-pa-md col-12">
-          <q-input clearable v-model="register.phone" outlined label="phone" ref="phone" :rules="[ $rules.required('phone is required') ]"/>
+          <q-input clearable v-model="register.phone" mask="(##) ##### - ####" outlined label="phone" ref="phone" :rules="[ $rules.required('phone is required') ]"/>
         </div>
         <div class="q-pa-md col-12">
           <q-toggle hide-bottom-space v-model="register.whatsapp" label="Whatsapp" ref="whatsapp"/>
+        </div>
+        <div class="q-pa-md col-12">
+          <q-select
+            hide-bottom-space
+            clearable outlined
+            v-model="register.client_id"
+            emit-value map-options
+            :options="clients"
+            option-value="id"
+            option-label="name"
+            label="Client"
+            ref="client_id"
+            :rules="[ $rules.minValue(1, 'Client is required') ]"
+            />
+        </div>
+        <div class="q-pa-md col-12">
+          <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
         </div>
       </q-card-section>
     </q-card>
@@ -25,8 +42,10 @@ export default defineComponent({
     const vars = reactive({
       register: {
         phone: '',
-        whatsapp: true
-      } as Phone
+        whatsapp: true,
+        client_id: 0
+      } as Phone,
+      clients: [] as unknown
     })
     const functions = {
       async create() {
@@ -45,8 +64,10 @@ export default defineComponent({
         const id = root.$route.params?.id
         if (id) {
           const response = await get(`phones/${id}`)
+          response.whatsapp = Boolean(response.whatsapp)
           vars.register = response
         }
+        vars.clients = await get('clients')
       }
     }
     void functions.main()

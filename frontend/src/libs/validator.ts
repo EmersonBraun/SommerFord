@@ -4,8 +4,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-export function validate (refs: any, fields: string[]) {
+export function validate (refs: any, fields: string[], debug = false) {
   const valid = fields.reduce((prevVal, field: string | number) => {
+    if (debug) {
+      console.log('prevVal', prevVal)
+      console.log('field', field)
+    }
     const validated = refs[field] ? refs[field].validate() : true
     return prevVal && validated
   }, true)

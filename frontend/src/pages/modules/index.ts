@@ -21,7 +21,6 @@ export const columns = [
 
 export const fields = [
   'name',
-  'small_title',
   'model_name',
   'route_name',
   'project_id',

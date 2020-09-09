@@ -5,7 +5,7 @@ export type Payment = {
   id?: number
   value: number
   date: unknown
-  payment_status: number
+  payment_status: string
   client_id: number
 }
 
@@ -23,4 +23,3 @@ export const fields = [
   'payment_status',
   'client_id',
 ]
-

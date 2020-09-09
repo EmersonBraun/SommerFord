@@ -3,7 +3,7 @@ import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { ServiceStateInterface } from './state';
 import { get, post, put, deleteData } from 'src/libs/api'
-const module = 'Services'
+const module = 'services'
 
 const actions: ActionTree<ServiceStateInterface, StateInterface> = {
   async getAll (context) {

@@ -3,7 +3,7 @@ import { ActionTree } from 'vuex';
 import { StateInterface } from '../index';
 import { PaymentStateInterface } from './state';
 import { get, post, put, deleteData } from 'src/libs/api'
-const module = 'Payments'
+const module = 'payments'
 
 const actions: ActionTree<PaymentStateInterface, StateInterface> = {
   async getAll (context) {

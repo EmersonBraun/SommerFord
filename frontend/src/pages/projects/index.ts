@@ -15,7 +15,7 @@ export type Project = {
 
 export const columns = [
   { name: 'name', label: 'Name', field: 'name', sortable: true },
-  { name: 'visual_identity', label: 'visual_identity', field: 'visual_identity', sortable: true },
+  { name: 'visual_identity', label: 'visual_identity', field: 'visual_identity', sortable: true, format: val => val ? 'Yes' : 'No', },
   { name: 'competitor', label: 'competitor', field: 'competitor', sortable: true },
   { name: 'project_type', label: 'project_type', field: 'project_type', sortable: true },
   { name: 'dev_type', label: 'dev_type', field: 'dev_type', sortable: true },
@@ -27,11 +27,9 @@ export const columns = [
 
 export const fields = [
   'name',
-  'visual_identity',
   'competitor',
   'project_type',
   'dev_type',
   'client_id',
   'start_date',
-  'end_date',
 ]

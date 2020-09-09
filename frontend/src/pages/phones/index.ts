@@ -10,13 +10,12 @@ export type Phone = {
 
 export const columns = [
   { name: 'phone', label: 'phone', field: 'phone', sortable: true },
-  { name: 'whatsapp', label: 'whatsapp', field: 'whatsapp' },
+  { name: 'whatsapp', label: 'Whatsapp', field: 'whatsapp', format: val => val ? 'Yes' : 'No', },
   // { name: 'client_id', label: 'client_id', field: 'client_id' },
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 
 export const fields = [
   'phone',
-  'whatsapp',
   'client_id',
 ]
