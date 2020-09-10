@@ -21,6 +21,28 @@ export default class GroupsController {
       .json(data)
   }
 
+  async services ({ params, request, response }: HttpContextContract) {
+    const register = await this.repository.services(params.id, request.all())
+    const { data, statusCode, returnType, message, contentError } = register
+    return response
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
+      .status(statusCode)
+      .json(data)
+  }
+
+  async servicesIds ({ params, response }: HttpContextContract) {
+    const register = await this.repository.servicesIds(params.id)
+    const { data, statusCode, returnType, message, contentError } = register
+    return response
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
+      .status(statusCode)
+      .json(data)
+  }
+
   async store ({ request, response }: HttpContextContract) {
     try {
       await request.validate({schema: GroupSchema})

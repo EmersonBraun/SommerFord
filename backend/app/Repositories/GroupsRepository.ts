@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
+import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, sync, getRelated } from '../Services/CRUD'
 import Group from '../Models/Group'
 
 class GroupsRepository {
@@ -16,6 +16,14 @@ class GroupsRepository {
 
   async all () {
     return await all(this.model)
+  }
+
+  async services (id, data) {
+    return await sync(this.model, id, 'service', data)
+  }
+
+  async servicesIds (id) {
+    return await getRelated(this.model, id, 'service')
   }
 
   async find (id) {

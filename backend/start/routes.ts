@@ -28,6 +28,8 @@ Route.group(() => {
   Route.resource('clients','ClientsController').apiOnly()
   Route.resource('dev-types','DevTypesController').apiOnly()
   Route.resource('fields','FieldsController').apiOnly()
+  Route.post('groups/:id/services','GroupsController.services')
+  Route.get('groups/:id/services','GroupsController.servicesIds')
   Route.resource('groups','GroupsController').apiOnly()
   Route.resource('manies','ManiesController').apiOnly()
   Route.get('modules/count','ModulesController.count')

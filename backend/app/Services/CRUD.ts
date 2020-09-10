@@ -230,7 +230,8 @@ export async function findAndDestroy (Model, id: any) {
 
 export async function getRelated (Model, idModel, related) {
   try{
-    data = await Model.find(idModel).related(related).first()
+    data = await Model.query().where('id',idModel).preload(related).first()
+    console.log(data)
   } catch(error) {
     logError('count', error)
     contentError = error
@@ -274,8 +275,11 @@ export async function createManyRelated (Model, idModel, related, data) {
 }
 
 export async function sync (Model, idModel, related, idsRelated) {
+  const req = await Model.find(idModel)
+  console.log(Object.values(idsRelated))
   try{
-    data = await Model.find(idModel).related(related).sync(idsRelated)
+    const res = await req.related(related).sync(Object.values(idsRelated))
+    data = res || []
   } catch(error) {
     logError('count', error)
     contentError = error
@@ -284,6 +288,10 @@ export async function sync (Model, idModel, related, idsRelated) {
   statusCode = getSatusCode(contentError, 'load')
   returnType = getHappen(statusCode)
   message = getMessage('load', statusCode)
+  console.log(data)
+  console.log(statusCode)
+  console.log(returnType)
+  console.log(message)
 
   return { data, statusCode, returnType, message, contentError }
 }
