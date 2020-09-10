@@ -2,6 +2,7 @@
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, count } from '../Services/CRUD'
 import Module from '../Models/Module'
+import { mountResponse } from 'App/Services/ResponseUtils'
 
 class ModulesRepository {
   protected model: any
@@ -20,6 +21,18 @@ class ModulesRepository {
 
   async count () {
     return await count(this.model)
+  }
+
+  async project (id) {
+    let data; let contentError = ''
+
+    try{
+      data = await this.model.query().where('project_id',id)
+    } catch(error) {
+      contentError = error
+    }
+
+    return mountResponse(data, contentError, 'found')
   }
 
   async find (id) {

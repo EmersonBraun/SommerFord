@@ -31,6 +31,7 @@ Route.group(() => {
   Route.resource('groups','GroupsController').apiOnly()
   Route.resource('manies','ManiesController').apiOnly()
   Route.get('modules/count','ModulesController.count')
+  Route.get('modules/project/:id','ModulesController.project')
   Route.resource('modules','ModulesController').apiOnly()
   Route.resource('payments','PaymentsController').apiOnly()
   Route.resource('payment-statuses','PaymentStatusesController').apiOnly()

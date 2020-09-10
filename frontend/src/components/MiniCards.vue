@@ -1,5 +1,5 @@
 <template>
-  <q-card v-ripple:primary class="mini-card">
+  <q-card v-ripple:primary class="mini-card" >
     <q-card-section>
       <div class="col-6">
         <div class="text-h4">
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-6">
-        <q-icon :name="icon" size="xl" class="absolute-bottom-right q-pb-sm q-pr-sm" color="blue-5" />
+        <q-icon :name="icon" size="xl" class="absolute-bottom-right q-pb-sm q-pr-sm" color="blue-5" :to="link"/>
       </div>
     </q-card-section>
   </q-card>
@@ -28,6 +28,10 @@ export default {
     },
     icon: {
       type: String
+    },
+    link: {
+      type: String,
+      default: '/',
     }
   }
 }

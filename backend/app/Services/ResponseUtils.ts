@@ -32,3 +32,16 @@ export function mountHeader (type='success', message='Success', error=[]): objec
   }
 }
 
+export function mountResponse (data = [], contentError = '', typeFunction: TypeFunction): object {
+  const statusCode = getSatusCode(contentError, typeFunction)
+  const returnType = getHappen(statusCode)
+  const message = getMessage(typeFunction, statusCode)
+  return {
+    data,
+    statusCode,
+    returnType,
+    message,
+    contentError,
+  }
+}
+

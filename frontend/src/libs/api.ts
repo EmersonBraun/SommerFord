@@ -38,7 +38,7 @@ function showNotify (response: { headers: { message: string }; status: number })
     }
   }
 }
-function setResponse (response: AxiosResponse<unknown>, silent = false) {
+function setResponse (response: AxiosResponse, silent = false) {
   if (response.status === 403) window.location.replace('/')
   if (!silent) showNotify(response)
   return response.data

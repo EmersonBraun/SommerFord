@@ -1,5 +1,5 @@
 <template>
-  <mini-card :value="item.value" :description="item.description" :icon="item.icon" ></mini-card>
+  <mini-card :value="item.value" :description="item.description" :icon="item.icon" :link="item.link"></mini-card>
 </template>
 
 <script lang="ts">
@@ -12,7 +12,7 @@ export default defineComponent({
   components: { MiniCard },
   setup() {
     const vars = reactive({
-      item: { value: 0, description: 'Projects', icon: 'house' },
+      item: { value: 0, description: 'Projects', icon: 'house', link: '/projects' },
     })
     async function main () {
       vars.item.value = await get('projects/count')

@@ -228,3 +228,63 @@ export async function findAndDestroy (Model, id: any) {
   return { data, statusCode, returnType, message, contentError }
 }
 
+export async function getRelated (Model, idModel, related) {
+  try{
+    data = await Model.find(idModel).related(related).first()
+  } catch(error) {
+    logError('count', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'load')
+  returnType = getHappen(statusCode)
+  message = getMessage('load', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+
+export async function createRelated (Model, idModel, related, data) {
+  try{
+    data = await Model.find(idModel).related(related).create(data)
+  } catch(error) {
+    logError('count', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'load')
+  returnType = getHappen(statusCode)
+  message = getMessage('load', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+
+export async function createManyRelated (Model, idModel, related, data) {
+  try{
+    data = await Model.find(idModel).related(related).createMany(data)
+  } catch(error) {
+    logError('count', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'load')
+  returnType = getHappen(statusCode)
+  message = getMessage('load', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+
+export async function sync (Model, idModel, related, idsRelated) {
+  try{
+    data = await Model.find(idModel).related(related).sync(idsRelated)
+  } catch(error) {
+    logError('count', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'load')
+  returnType = getHappen(statusCode)
+  message = getMessage('load', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+

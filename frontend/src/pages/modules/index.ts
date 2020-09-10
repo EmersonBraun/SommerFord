@@ -28,5 +28,4 @@ export const fields = [
   'model_name',
   'route_name',
   'project_id',
-  'start_date'
 ]

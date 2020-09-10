@@ -1,8 +1,12 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-// import { PaymentStatusFactory } from '../factories/PaymentStatusFactory'
+import PaymentStatus from 'App/Models/PaymentStatus'
 
 export default class PaymentStatusSeeder extends BaseSeeder {
   public async run () {
-    // await PaymentStatusFactory.createMany(10)
+    await PaymentStatus.createMany([
+      { payment_status: 'Expected'},
+      { payment_status: 'Paid'},
+      { payment_status: 'Delayed'},
+    ])
   }
 }
