@@ -12,7 +12,6 @@ import paymentStatus from './paymentsStatuses';
 import phone from './phones';
 import project from './projects';
 import projectType from './projectsTypes';
-import relation from './relations';
 import service from './services';
 import user from './users';
 
@@ -27,7 +26,6 @@ import { PaymentStatusStateInterface } from './paymentsStatuses/state';
 import { PhoneStateInterface } from './phones/state';
 import { ProjectStateInterface } from './projects/state';
 import { ProjectTypeStateInterface } from './projectsTypes/state';
-import { RelationStateInterface } from './relations/state';
 import { ServiceStateInterface } from './services/state';
 import { UserStateInterface } from './users/state';
 
@@ -50,7 +48,6 @@ export interface StateInterface {
   phones: PhoneStateInterface;
   projects: ProjectStateInterface;
   projectsTypes: ProjectTypeStateInterface;
-  relations: RelationStateInterface;
   services: ServiceStateInterface;
   users: UserStateInterface;
 
@@ -74,7 +71,6 @@ export default store(function ({ Vue }) {
       phone,
       project,
       projectType,
-      relation,
       service,
       user,
     },

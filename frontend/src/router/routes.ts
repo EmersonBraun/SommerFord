@@ -12,7 +12,6 @@ import payments from './payments'
 import phones from './phones'
 import project from './projects'
 import projectTypes from './projectTypes'
-import relations from './relations'
 import services from './services'
 import users from './users'
 
@@ -29,7 +28,6 @@ const routes: RouteConfig[] = [
   ...phones,
   ...project,
   ...projectTypes,
-  ...relations,
   ...services,
   ...users,
   {

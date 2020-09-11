@@ -1,5 +1,5 @@
 <template>
-  <q-card v-ripple:primary class="mini-card" >
+  <q-card v-ripple:primary class="mini-card" @click="clicked">
     <q-card-section>
       <div class="col-6">
         <div class="text-h4">
@@ -32,6 +32,14 @@ export default {
     link: {
       type: String,
       default: '/',
+    }
+  }, 
+  setup(props, { root }) {
+    function clicked () {
+      setTimeout(() => root.$router.push(props.link), 500) 
+    }
+    return {
+      clicked
     }
   }
 }

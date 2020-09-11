@@ -7,7 +7,7 @@ export type ProjectType = {
 }
 
 export const columns = [
-  { name: 'project_type', label: 'project_type', field: 'project_type', sortable: true },
+  { name: 'Project Types', label: 'Project Types', field: 'project_type', sortable: true },
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 

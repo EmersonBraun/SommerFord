@@ -67,7 +67,6 @@ export default defineComponent({
 
     watch(() => vars.servicesSelecteds, async (newVal) => {
       const ids = newVal.map(s => s.id)
-      console.log('ids',ids)
       vars.totalTime = Number(newVal.reduce((prevVal, s:  number | string) => prevVal + s.hour_needed, 0))
       await post(`modules/${props.moduleId}/services`, ids)
     })

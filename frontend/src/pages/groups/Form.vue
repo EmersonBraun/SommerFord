@@ -1,5 +1,10 @@
 <template>
   <q-page class="doc-container q-pa-md">
+    <q-breadcrumbs>
+      <q-breadcrumbs-el label="Home" to="/"/>
+      <q-breadcrumbs-el label="List" to="/groups"/>
+      <q-breadcrumbs-el label="Form" />
+    </q-breadcrumbs>
     <q-card flat>
       <q-card-section class="row">
         <div class="q-pa-md col-12">
@@ -12,14 +17,11 @@
             stack-label
             hide-bottom-space
             clearable outlined
-            v-model="servicesIds"
+            v-model="servicesSelecteds"
             emit-value map-options
             :options="services"
-            option-value="id"
             option-label="service"
             label="Services"
-            @add="updateServices"
-            @remove="updateServices"
             />
         </div>
         <div class="q-pa-md col-12">
@@ -31,9 +33,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from '@vue/composition-api'
+import { defineComponent, reactive, toRefs, watch } from '@vue/composition-api'
 import { get, post } from 'src/libs/api'
 import { Group, fields } from './index'
+import { Service } from 'src/pages/services'
 import { validate } from '../../libs/validator'
 
 export default defineComponent({
@@ -44,7 +47,7 @@ export default defineComponent({
         group: ''
       } as Group,
       services: [] as unknown,
-      servicesIds: []
+      servicesSelecteds: [] as Service[]
     })
     const functions = {
       async create() {
@@ -59,23 +62,22 @@ export default defineComponent({
           root.$router.push('/groups')
         }
       },
-      async updateServices () {
-        await post(`groups/${vars.register.id}/services`, vars.servicesIds)
-      },
       async main () {
         const id = root.$route.params?.id
         if (id) {
           vars.register = await get(`groups/${id}`)
           const response = await get(`groups/${id}/services`)
-            console.log(response)
-          if (response.service) {
-            vars.servicesIds = response.service.map(r => r.id)
-          }
+          vars.servicesSelecteds = response[0].service
         }
         vars.services = await get('services')
       }
     }
     void functions.main()
+    watch(() => vars.servicesSelecteds, async (newVal) => {
+      const ids = newVal.map(s => s.id)
+      console.log('ids',ids)
+      await post(`groups/${vars.register.id}/services`, ids)
+    })
 
     return { 
       ...toRefs(vars),

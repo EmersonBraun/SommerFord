@@ -1,5 +1,10 @@
 <template>
   <q-page class="doc-container q-pa-md">
+    <q-breadcrumbs>
+      <q-breadcrumbs-el label="Home" to="/"/>
+      <q-breadcrumbs-el label="List" to="/modules"/>
+      <q-breadcrumbs-el label="Form" />
+    </q-breadcrumbs>
     <q-card flat>
       <q-card-section class="row">
         <div class="q-pa-md col-6">

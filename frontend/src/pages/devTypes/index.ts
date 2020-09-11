@@ -7,8 +7,7 @@ export type DevType = {
 }
 
 export const columns = [
-  { name: 'name', label: 'Name', field: 'name', sortable: true },
-  { name: 'dev_type', label: 'dev_type', field: 'dev_type' },
+  { name: 'Dev Types', label: 'Dev Types', field: 'dev_type' },
   { name: 'actions', label: 'Actions', field: 'actions' }
 ]
 

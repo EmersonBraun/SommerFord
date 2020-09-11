@@ -53,10 +53,7 @@
               </template>
             </q-input>
           </div>
-          <div class="q-pa-md col-6">
-            <q-btn @click="close" color="secondary" label="Cancel" class="full-width"/>
-          </div>
-          <div class="q-pa-md col-6">
+          <div class="q-pa-md col-12">
             <q-btn @click="register.id ? update() : create()" color="primary" :label="register.id ? 'Edit' : 'Create'" class="full-width"/>
           </div>
         </q-card-section>
@@ -99,6 +96,9 @@
       >
         <services-create :moduleId="register.id"/>
       </q-expansion-item>
+      <div class="q-pa-md col-12">
+        <q-btn @click="close" color="secondary" label="Close" class="full-width"/>
+      </div>
     </q-card>
   </q-dialog>
 </template>

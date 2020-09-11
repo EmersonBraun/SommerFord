@@ -53,7 +53,6 @@
                 <q-item clickable class="GL__menu-link" to="/modules"><q-item-section>modules</q-item-section></q-item>
                 <q-item clickable class="GL__menu-link" to="/fields"><q-item-section>fields</q-item-section></q-item>
                 <q-item clickable class="GL__menu-link" to="/manies"><q-item-section>manies</q-item-section></q-item>
-                <q-item clickable class="GL__menu-link" to="/relations"><q-item-section>relations</q-item-section></q-item>
                 <q-item-label header>Projects Admin</q-item-label>
                 <q-item clickable class="GL__menu-link" to="/dev-types"><q-item-section>dev-types</q-item-section></q-item>
                 <q-item clickable class="GL__menu-link" to="/project-types"><q-item-section>project-types</q-item-section></q-item>

@@ -1,5 +1,9 @@
 <template>
   <q-page class="doc-container q-pa-md">
+    <q-breadcrumbs>
+      <q-breadcrumbs-el label="Home" to="/"/>
+      <q-breadcrumbs-el label="List"/>
+    </q-breadcrumbs>
     <q-card flat>
       <q-card-section class="row">
           <q-table
@@ -50,7 +54,7 @@ export default defineComponent({
         await root.$store.dispatch('devType/getAll')
       },
       editRow (id: number) {
-        void root.$router.push(`devTypes/edit/${id}`)
+        void root.$router.push(`dev-types/edit/${id}`)
       },
       removeRow (id: number) {
         root.$q.dialog(confirmMsg('Alert!','are you sure?')).onOk(() => {

@@ -1,5 +1,10 @@
 <template>
   <q-page class="doc-container q-pa-md">
+    <q-breadcrumbs>
+      <q-breadcrumbs-el label="Home" to="/"/>
+      <q-breadcrumbs-el label="List" to="/projects"/>
+      <q-breadcrumbs-el label="Form" />
+    </q-breadcrumbs>
     <q-expansion-item
       class="shadow-1 overflow-hidden"
       icon="fa fa-pen"
@@ -180,10 +185,10 @@ export default defineComponent({
         vars.clients = await get('clients')
         vars.projectTypes = await get('project-types')
         vars.devTypes = await get('dev-types')
+        this.onChanged(true)
       }
     }
     void functions.main()
-
     return { 
       ...toRefs(vars),
       ...functions
