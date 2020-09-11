@@ -8,6 +8,9 @@ export type Field = {
   field_type: string
   required: boolean
   relationed: boolean
+  relationed_name: string
+  relationed_model_name: string
+  relationed_table_name: string
 }
 
 export const columns = [

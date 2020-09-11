@@ -92,8 +92,20 @@
     <q-space />
     <div v-if="register.id">
       <q-btn color="primary" icon="fa fa-plus" class="full-width" label="add module" @click="moduleCreate = true"/>
-      <modules-list :projectId="register.id" :key="key" @changed="onChanged" @edit="getModuleID"/>
-      <modules-create :projectId="register.id" :show="moduleCreate" :moduleData="moduleData" @changed="onChanged"/>
+      <modules-list 
+        v-if="register.id"
+        :projectId="register.id" 
+        :key="key"
+        @changed="onChanged" 
+        @edit="getModuleID"/>
+      <modules-create
+        v-if="register.id"
+        :projectId="register.id"
+        :projectName="register.name"
+        :show="moduleCreate" 
+        :moduleData="moduleData" 
+        @changed="onChanged"
+      />
     </div>
   </q-page>
 </template>
@@ -134,12 +146,16 @@ export default defineComponent({
       async create() {
         if (validate(refs, fields)) {
           const response = await post('projects', vars.register)
-          if (response?.id) void root.$router.push(`/projects/edit/${String(response.id)}`)
+          if (response?.id) {
+            void root.$router.push(`/projects/edit/${String(response.id)}`)
+            this.onChanged(true)
+          }
         }
       },
       async update() {
         if (validate(refs, fields)) {
           await root.$store.dispatch('project/update', vars.register)
+          this.onChanged(true)
           // root.$router.push('/projects')
         }
       },

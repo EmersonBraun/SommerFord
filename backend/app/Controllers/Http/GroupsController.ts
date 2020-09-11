@@ -21,8 +21,8 @@ export default class GroupsController {
       .json(data)
   }
 
-  async services ({ params, request, response }: HttpContextContract) {
-    const register = await this.repository.services(params.id, request.all())
+  async servicesSync ({ params, request, response }: HttpContextContract) {
+    const register = await this.repository.servicesSync(params.id, request.all())
     const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)
@@ -32,8 +32,8 @@ export default class GroupsController {
       .json(data)
   }
 
-  async servicesIds ({ params, response }: HttpContextContract) {
-    const register = await this.repository.servicesIds(params.id)
+  async servicesGet ({ params, response }: HttpContextContract) {
+    const register = await this.repository.servicesGet(params.id)
     const { data, statusCode, returnType, message, contentError } = register
     return response
       .safeHeader('returnType', returnType)

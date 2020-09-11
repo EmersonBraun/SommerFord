@@ -12,6 +12,10 @@ export default class Fields extends BaseSchema {
       table.boolean('required').nullable()
       table.boolean('relationed').nullable()
 
+      table.string('relationed_name').nullable()
+      table.string('relationed_model_name').nullable()
+      table.string('relationed_table_name').nullable()
+
       table.foreign('module_id').references('id').inTable('modules').onDelete('CASCADE')
     })
   }

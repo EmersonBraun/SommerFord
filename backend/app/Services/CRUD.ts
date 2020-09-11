@@ -1,11 +1,11 @@
 import Logger from '@ioc:Adonis/Core/Logger'
-import { getSatusCode, getHappen, getMessage } from './ResponseUtils'
+import { getSatusCode, getHappen, getMessage, mountResponse } from './ResponseUtils'
 
 let data = []
 let statusCode = 400
 let message = ''
 let returnType = 'error'
-let contentError = []
+let contentError = ''
 
 export async function logError (func: string, error: any) {
   Logger.warn(`Repository ${func} Error: ${error}`)
@@ -107,6 +107,21 @@ export async function findOrFail (Model, id: any) {
     data = await Model.findOrFail(id)
   } catch(error) {
     logError('findOrFail', error)
+    contentError = error
+  }
+
+  statusCode = getSatusCode(contentError, 'found')
+  returnType = getHappen(statusCode)
+  message = getMessage('found', statusCode)
+
+  return { data, statusCode, returnType, message, contentError }
+}
+
+export async function findWhere (Model, key: string, value: any) {
+  try{
+    data = await Model.query().where(key, value)
+  } catch(error) {
+    logError('findWhere', error)
     contentError = error
   }
 
@@ -230,18 +245,14 @@ export async function findAndDestroy (Model, id: any) {
 
 export async function getRelated (Model, idModel, related) {
   try{
-    data = await Model.query().where('id',idModel).preload(related).first()
+    data = await Model.query().preload(related).where('id', idModel)
     console.log(data)
   } catch(error) {
     logError('count', error)
     contentError = error
   }
 
-  statusCode = getSatusCode(contentError, 'load')
-  returnType = getHappen(statusCode)
-  message = getMessage('load', statusCode)
-
-  return { data, statusCode, returnType, message, contentError }
+  return mountResponse(data, contentError, 'load')
 }
 
 export async function createRelated (Model, idModel, related, data) {
@@ -252,11 +263,7 @@ export async function createRelated (Model, idModel, related, data) {
     contentError = error
   }
 
-  statusCode = getSatusCode(contentError, 'load')
-  returnType = getHappen(statusCode)
-  message = getMessage('load', statusCode)
-
-  return { data, statusCode, returnType, message, contentError }
+  return mountResponse(data, contentError, 'load')
 }
 
 export async function createManyRelated (Model, idModel, related, data) {
@@ -267,32 +274,21 @@ export async function createManyRelated (Model, idModel, related, data) {
     contentError = error
   }
 
-  statusCode = getSatusCode(contentError, 'load')
-  returnType = getHappen(statusCode)
-  message = getMessage('load', statusCode)
-
-  return { data, statusCode, returnType, message, contentError }
+  return mountResponse(data, contentError, 'load')
 }
 
 export async function sync (Model, idModel, related, idsRelated) {
-  const req = await Model.find(idModel)
-  console.log(Object.values(idsRelated))
-  try{
-    const res = await req.related(related).sync(Object.values(idsRelated))
-    data = res || []
-  } catch(error) {
-    logError('count', error)
-    contentError = error
+  const find = await Model.find(idModel)
+  if (find) {
+    try{
+      data = await find?.related(related).sync(Object.values(idsRelated))
+    } catch(error) {
+      logError('sync', error)
+      contentError = error
+    }
+    return mountResponse(data, contentError, 'update')
   }
 
-  statusCode = getSatusCode(contentError, 'load')
-  returnType = getHappen(statusCode)
-  message = getMessage('load', statusCode)
-  console.log(data)
-  console.log(statusCode)
-  console.log(returnType)
-  console.log(message)
-
-  return { data, statusCode, returnType, message, contentError }
+  return mountResponse([], 'Not found', 'update')
 }
 

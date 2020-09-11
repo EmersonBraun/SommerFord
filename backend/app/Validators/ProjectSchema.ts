@@ -5,7 +5,6 @@ export const ProjectSchema = schema.create({
   visual_identity: schema.boolean(),
   project_type: schema.string(),
   dev_type: schema.string(),
-  start_date: schema.date(),
   client_id: schema.number([
     rules.exists({ table: 'clients', column: 'id' }),
   ]),

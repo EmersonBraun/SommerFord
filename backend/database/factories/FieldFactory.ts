@@ -8,6 +8,9 @@ export const FieldFactory = Factory
     name: faker.lorem.words(3),
     required: faker.random.boolean(),
     relationed: faker.random.boolean(),
+    relationed_name: faker.lorem.words(3),
+    relationed_model_name: faker.lorem.words(3),
+    relationed_table_name: faker.lorem.words(3),
     module_id: await randomModuleId(),
   }))
   .build()

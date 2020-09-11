@@ -31,5 +31,4 @@ export const fields = [
   'project_type',
   'dev_type',
   'client_id',
-  'start_date',
 ]

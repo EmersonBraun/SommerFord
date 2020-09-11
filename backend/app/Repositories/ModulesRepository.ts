@@ -1,6 +1,17 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, count } from '../Services/CRUD'
+import {
+  first,
+  all,
+  create,
+  findAndUpdate,
+  find,
+  createOrUpdate,
+  findAndDelete,
+  count,
+  sync,
+  getRelated,
+} from '../Services/CRUD'
 import Module from '../Models/Module'
 import { mountResponse } from 'App/Services/ResponseUtils'
 
@@ -33,6 +44,14 @@ class ModulesRepository {
     }
 
     return mountResponse(data, contentError, 'found')
+  }
+
+  async servicesSync (id, ids: Object) {
+    return await sync(this.model, id, 'service', ids)
+  }
+
+  async servicesGet (id) {
+    return await getRelated(this.model, id, 'service')
   }
 
   async find (id) {

@@ -43,6 +43,28 @@ export default class ModulesController {
       .json(data)
   }
 
+  async servicesSync ({ params, request, response }: HttpContextContract) {
+    const register = await this.repository.servicesSync(params.id, request.all())
+    const { data, statusCode, returnType, message, contentError } = register
+    return response
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
+      .status(statusCode)
+      .json(data)
+  }
+
+  async servicesGet ({ params, response }: HttpContextContract) {
+    const register = await this.repository.servicesGet(params.id)
+    const { data, statusCode, returnType, message, contentError } = register
+    return response
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
+      .status(statusCode)
+      .json(data)
+  }
+
   async store ({ request, response }: HttpContextContract) {
     try {
       await request.validate({schema: ModuleSchema})

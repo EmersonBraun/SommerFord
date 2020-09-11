@@ -2,6 +2,7 @@ import { BaseModel, column, HasOne, hasOne, manyToMany, ManyToMany } from '@ioc:
 
 import Project from './Project'
 import Service from './Service'
+// import Field from './Field'
 
 export default class Module extends BaseModel {
   @column({ isPrimary: true })
@@ -30,6 +31,9 @@ export default class Module extends BaseModel {
 
   @hasOne(() => Project)
   public project: HasOne<typeof Project>
+
+  // @hasOne(() => Field)
+  // public fieldId: HasOne<typeof Field>
 
   @manyToMany(() => Service, {
     pivotTable: 'modules_has_services',

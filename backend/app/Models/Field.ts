@@ -21,6 +21,15 @@ export default class Field extends BaseModel {
   @column()
   public relationed: boolean
 
+  @column()
+  public relationed_name: string
+
+  @column()
+  public relationed_model_name: string
+
+  @column()
+  public relationed_table_name: string
+
   @hasOne(() => Module)
   public module: HasOne<typeof Module>
 }

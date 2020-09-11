@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
+import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, findWhere } from '../Services/CRUD'
 import Field from '../Models/Field'
 
 class FieldsRepository {
@@ -16,6 +16,10 @@ class FieldsRepository {
 
   async all () {
     return await all(this.model)
+  }
+
+  async moduleList (id) {
+    return findWhere(this.model, 'module_id',id)
   }
 
   async find (id) {
