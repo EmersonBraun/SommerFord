@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
-import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete } from '../Services/CRUD'
+import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, findWhere } from '../Services/CRUD'
 import Payment from '../Models/Payment'
 
 class PaymentsRepository {
@@ -16,6 +16,10 @@ class PaymentsRepository {
 
   async all () {
     return await all(this.model)
+  }
+
+  async clientList (id) {
+    return await findWhere(this.model, 'client_id', id)
   }
 
   async find (id) {

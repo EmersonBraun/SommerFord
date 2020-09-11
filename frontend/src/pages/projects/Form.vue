@@ -112,6 +112,40 @@
         @changed="onChanged"
       />
     </div>
+    <q-btn v-if="register.id" color="secondary" class="full-width" label="Budget" @click="relatory('budget')"/>
+    <q-btn v-if="register.id" color="primary" class="full-width" label="Backlog" @click="relatory('backlog')"/>
+    <q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">{{relatory.name}}</div>
+          <div>{{relatory.project_type}}</div>
+          <div>{{relatory.dev_type}}</div>
+        </q-card-section>
+
+        <q-card-section v-if="relatory.modules && relatory.modules.length" class="q-pt-none">
+          <div v-for="m in relatory.modules">
+            <div>{{m.name}}</div>
+            <template v-if="m.service && m.service.length">
+              <div v-for="service in m.service">
+                <div>{{service.service}}</div>
+                <div>{{service.scope}}</div>
+                <div>{{service.hour_needed}}</div>
+              </div>
+            </template>
+            <template v-else>
+              Without registered services
+            </template>
+          </div>
+        </q-card-section>
+        <q-card-section v-else class="q-pt-none">
+          Without registered modules
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -141,11 +175,14 @@ export default defineComponent({
         end_date: ''
       } as Project,
       key: 0,
+      alert: false,
       moduleCreate: false,
       moduleData: {},
       clients: [] as unknown,
       projectTypes: [] as unknown,
-      devTypes: [] as unknown
+      devTypes: [] as unknown,
+      relatory: [] as unknown,
+      type: ''
     })
     const functions = {
       async create() {
@@ -175,12 +212,17 @@ export default defineComponent({
         vars.moduleData = val
         vars.moduleCreate = true
       },
+      async relatory (type: string) {
+          vars.type = type
+          vars.alert = true
+      },
       async main () {
         const id = root.$route.params?.id
         if (id) {
           const response = await get(`projects/${id}`)
           vars.register.visual_identity = Boolean(response.visual_identity)
           vars.register = response
+          vars.relatory = await get(`projects/${id}/complete`)
         }
         vars.clients = await get('clients')
         vars.projectTypes = await get('project-types')

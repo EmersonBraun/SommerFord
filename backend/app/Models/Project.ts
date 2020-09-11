@@ -1,6 +1,7 @@
-import { BaseModel, column, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasOne, hasOne, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 
 import Client from './Client'
+import Module from './Module'
 
 export default class Project extends BaseModel {
   @column({ isPrimary: true })
@@ -32,4 +33,7 @@ export default class Project extends BaseModel {
 
   @hasOne(() => Client)
   public client: HasOne<typeof Client>
+
+  @hasMany(() => Module)
+  public modules: HasMany<typeof Module>
 }

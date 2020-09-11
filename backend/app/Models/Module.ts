@@ -1,4 +1,4 @@
-import { BaseModel, column, HasOne, hasOne, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, manyToMany, ManyToMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 
 import Project from './Project'
 import Service from './Service'
@@ -9,7 +9,7 @@ export default class Module extends BaseModel {
   public id: number
 
   @column()
-  public project_id: number
+  public projectId: number
 
   @column()
   public name: string
@@ -29,8 +29,8 @@ export default class Module extends BaseModel {
   @column()
   public end_date: Date
 
-  @hasOne(() => Project)
-  public project: HasOne<typeof Project>
+  @belongsTo(() => Project)
+  public project: BelongsTo<typeof Project>
 
   // @hasOne(() => Field)
   // public fieldId: HasOne<typeof Field>

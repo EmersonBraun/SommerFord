@@ -32,6 +32,17 @@ export default class ProjectsController {
       .json(data)
   }
 
+  async complete ({ params, response }: HttpContextContract) {
+    const register = await this.repository.complete(params.id)
+    const { data, statusCode, returnType, message, contentError } = register
+    return response
+      .safeHeader('returnType', returnType)
+      .safeHeader('message', message)
+      .safeHeader('contentError', contentError)
+      .status(statusCode)
+      .json(data)
+  }
+
   async store ({ request, response }: HttpContextContract) {
     try {
       await request.validate({schema: ProjectSchema})

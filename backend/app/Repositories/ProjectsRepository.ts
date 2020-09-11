@@ -2,6 +2,7 @@
 
 import { first, all, create, findAndUpdate, find, createOrUpdate, findAndDelete, count } from '../Services/CRUD'
 import Project from '../Models/Project'
+import { mountResponse } from 'App/Services/ResponseUtils'
 
 class ProjectsRepository {
   protected model: any
@@ -16,6 +17,20 @@ class ProjectsRepository {
 
   async all () {
     return await all(this.model)
+  }
+
+  async complete (id) {
+    let data; let contentError = ''
+
+    try{
+      data = await Project.query().preload('modules', (query) => {
+        query.preload('service')
+      }).where('id', id)
+    } catch(error) {
+      contentError = error
+    }
+
+    return mountResponse(data, contentError, 'load')
   }
 
   async count () {
