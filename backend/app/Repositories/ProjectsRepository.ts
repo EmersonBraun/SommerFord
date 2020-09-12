@@ -25,7 +25,7 @@ class ProjectsRepository {
     try{
       data = await Project.query().preload('modules', (query) => {
         query.preload('service')
-      }).where('id', id)
+      }).where('id', id).first()
     } catch(error) {
       contentError = error
     }
