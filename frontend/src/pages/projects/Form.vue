@@ -114,36 +114,54 @@
     </div>
     <q-btn v-if="register.id" color="secondary" class="full-width" label="Budget" @click="getRelatory('budget')"/>
     <q-btn v-if="register.id" color="primary" class="full-width" label="Backlog" @click="getRelatory('backlog')"/>
-    <q-dialog v-model="alert">
-      <q-card>
-        <q-card-section class="q-pt-none">
+    <q-dialog 
+    v-model="alert"
+    >
+      <q-card class="row">
+        <q-card-section class="col-12">
           <q-list>
+
             <q-item>
+              <q-item-section avatar top>
+                <q-avatar icon="folder" color="primary" text-color="white" />
+              </q-item-section>
+
               <q-item-section>
-                <q-item-label>Name: {{relatory.name}}</q-item-label>
-                <q-item-label>Type: {{relatory.project_type}}</q-item-label>
-                <q-item-label>Dev Type: {{relatory.dev_type}}</q-item-label>
-                <q-item-label caption lines="2">Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+                <q-item-label lines="1">Name: {{relatory.name}}</q-item-label>
+                <q-item-label caption>Type: {{relatory.project_type}}</q-item-label>
+                <q-item-label caption>Dev Type: {{relatory.dev_type}}</q-item-label>
               </q-item-section>
 
-              <q-item-section v-if="relatory.modules && relatory.modules.length" class="q-pt-none">
-                <q-item-label v-for="m in relatory.modules">{{m.name}}
-                  <template v-if="m.service && m.service.length">
-                    <span v-for="service in m.service">
-                      <span>Service: {{service.service}}</span>
-                      <span>Scope: {{service.scope}}</span>
-                      <span>H/s: {{service.hour_needed}}</span><br>
-                    </span>
-                  </template>
-                  <template v-else>
-                    Without registered services
-                  </template>
-                </q-item-label>
+              <q-item-section side>
+                <q-icon name="info" color="green" />
               </q-item-section>
+            </q-item>
 
-              <q-item-section v-else class="q-pt-none">
-                <q-item-label>Without registered modules</q-item-label>
-              </q-item-section>
+            <template v-if="relatory.modules && relatory.modules.length">
+              <q-item v-for="m in relatory.modules" :key="m.id">
+                <q-item-section avatar top>
+                  <q-avatar icon="book" color="primary" text-color="white" />
+                </q-item-section>
+
+                <q-item-section>
+                  <q-item-label lines="1">Name: {{m.name}}</q-item-label>
+                </q-item-section>
+                
+                <q-item-section v-if="m.service && m.service.length">
+                  <q-item-label lines="3" v-for="(service, index) in m.service" :key="index">
+                    <p>{{index + 1}} {{service.service}} <b>{{service.scope}}</b> - {{service.hour_needed}}</p> 
+                  </q-item-label>
+                </q-item-section>
+                <q-item-section side v-else>
+                  Without registered services
+                </q-item-section>
+              </q-item>
+            </template>
+
+            <template v-else>
+              <q-item>Without registered modules</q-item>
+            </template>
+
             </q-item>
           </q-list>
         </q-card-section>
